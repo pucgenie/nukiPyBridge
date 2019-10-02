@@ -389,7 +389,7 @@ class GATTToolBackend(BLEBackend):
 
         # Sleep one extra second in case we caught characteristic
         # in the middle
-        time.sleep(1)
+        time.sleep(5)
 
         if not self._characteristics:
             raise NotConnectedError("Characteristic discovery failed")
@@ -424,7 +424,7 @@ class GATTToolBackend(BLEBackend):
 		self._receiver.clear("indication")
            	self.sendline(cmd)
 		try:
-			    self._receiver.wait("char_written", timeout=2)
+			    self._receiver.wait("char_written", timeout=5)
 			    waitingForIndications = True
 			    while waitingForIndications == True:
 				try:
