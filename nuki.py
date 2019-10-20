@@ -24,11 +24,12 @@ class Nuki():
 		self.config.read(cfg)
 		self.device = None
 	
-	def _makeBLEConnection(self):
+	def _makeBLEConnection(self, retries = 3):
 		if self.device == None:
+		    currentTries = 0
 			adapter = pygatt.backends.GATTToolBackend()
 			nukiBleConnectionReady = False
-			while nukiBleConnectionReady == False:
+			while (nukiBleConnectionReady == False and currentTries < retries):
 				print "Starting BLE adapter..."
 				adapter.start()
 				print "Init Nuki BLE connection..."
@@ -36,7 +37,8 @@ class Nuki():
 					self.device = adapter.connect(self.macAddress)
 					nukiBleConnectionReady = True
 				except:
-					print "Unable to connect, retrying..."
+				    currentTries += 1
+					print "Unable to connect, retrying..., retry count: " + currentTries
 			print "Nuki BLE connection established"
 	
 	def isNewNukiStateAvailable(self):
