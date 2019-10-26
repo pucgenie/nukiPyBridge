@@ -15,7 +15,7 @@ import bluetooth._bluetooth as bluez
 class Nuki():
     # creates BLE connection with NUKI
     #	-macAddress: bluetooth mac-address of your Nuki Lock
-    def __init__(self, macAddress, cfg='/home/pirate/nuki/nuki.cfg'):
+    def __init__(self, macAddress, cfg='/home/pi/nuki/nuki.cfg'):
         self._charWriteResponse = ""
         self.parser = nuki_messages.NukiCommandParser()
         self.crcCalculator = CrcCalculator()
@@ -166,7 +166,7 @@ class Nuki():
         if commandParsed.command != '000E':
             sys.exit("Nuki returned unexpected response (expecting STATUS): %s" % commandParsed.show())
         print("STATUS received: %s" % commandParsed.status)
-        with open('/home/pirate/nuki/nuki.cfg', 'wb') as configfile:
+        with open('/home/pi/nuki/nuki.cfg', 'wb') as configfile:
             self.config.write(configfile)
         return commandParsed.status
 
