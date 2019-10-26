@@ -18,6 +18,7 @@ def parse_config():
     return config_dict
 
 config = parse_config()
+print(config)
 
 @app.route("/")
 def get_config():
