@@ -16,7 +16,7 @@ class Nuki_EncryptedCommand(object):
 		self.command = nukiCommand
 		self.nonce = nonce
 		if nonce == '':
-			self.nonce = nacl.utils.random(24).encode("hex")
+			self.nonce = nacl.utils.random(24).hex()
 		self.publicKey = publicKey
 		self.privateKey = privateKey
 
@@ -24,13 +24,13 @@ class Nuki_EncryptedCommand(object):
 		unencrypted = self.authID + self.command.generate(format='HEX')[:-4]
 		crc = self.byteSwapper.swap(self.crcCalculator.crc_ccitt(unencrypted))
 		unencrypted = unencrypted + crc
-		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(self.publicKey)),bytes(bytearray.fromhex(self.privateKey))).encode("hex")
+		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(self.publicKey)),bytes(bytearray.fromhex(self.privateKey))).hex()
 		box = nacl.secret.SecretBox(bytes(bytearray.fromhex(sharedKey)))
-		encrypted = box.encrypt(bytes(bytearray.fromhex(unencrypted)), bytes(bytearray.fromhex(self.nonce))).encode("hex")[48:]
-		length = self.byteSwapper.swap("%04X" % (len(encrypted)/2))
+		encrypted = box.encrypt(bytes(bytearray.fromhex(unencrypted)), bytes(bytearray.fromhex(self.nonce))).hex()[48:]
+		length = self.byteSwapper.swap("%04X" % int((len(encrypted)/2)))
 		msg = self.nonce + self.authID + length + encrypted
 		if format == 'BYTE_ARRAY':
-			return array.array('B',msg.decode("hex"))
+			return bytearray.fromhex(msg)
 		else:
 			return msg
 
@@ -47,7 +47,7 @@ class Nuki_Command(object):
 		crc = self.byteSwapper.swap(self.crcCalculator.crc_ccitt(msg))
 		msg = msg + crc
 		if format == 'BYTE_ARRAY':
-			return array.array('B',msg.decode("hex"))
+			return bytearray.fromhex(msg)
 		else:
 			return msg
 		
@@ -109,7 +109,7 @@ class Nuki_AUTH_AUTHENTICATOR(Nuki_Command):
 			self.authenticator = payload
 			
 	def createPayload(self, nonceNuki, privateKeyAuth, publicKeyAuth, publicKeyNuki):
-		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).encode("hex")
+		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).hex()
 		valueR = publicKeyAuth + publicKeyNuki + nonceNuki
 		self.authenticator = hmac.new(bytearray.fromhex(sharedKey), msg=bytearray.fromhex(valueR), digestmod=hashlib.sha256).hexdigest()
 		self.payload = self.authenticator
@@ -136,15 +136,15 @@ class Nuki_AUTH_DATA(Nuki_Command):
 	def createPayload(self, publicKeyNuki, privateKeyAuth, publicKeyAuth, nonceNuki, appID, idType, name):
 		self.appID = ("%x" % appID).rjust(8,'0')
 		self.idType = idType
-		self.name = name.encode("hex").ljust(64, '0')
-		self.nonce = nacl.utils.random(32).encode("hex")
-		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).encode("hex")
+		self.name = name.hex().ljust(64, '0')
+		self.nonce = nacl.utils.random(32).hex()
+		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).hex()
 		valueR = self.idType + self.appID + self.name + self.nonce + nonceNuki
 		self.authenticator = hmac.new(bytearray.fromhex(sharedKey), msg=bytearray.fromhex(valueR), digestmod=hashlib.sha256).hexdigest()
 		self.payload = self.authenticator + self.idType + self.appID + self.name + self.nonce
 		
 	def show(self):
-		return "Nuki_AUTH_DATA\n\tAuthenticator: %s\n\tID Type: %s\n\tAuthenticator ID: %s\n\tName: %s\n\tNonce: %s" % (self.authenticator, self.idType, self.appID, self.name.decode("hex"), self.nonce)
+		return "Nuki_AUTH_DATA\n\tAuthenticator: %s\n\tID Type: %s\n\tAuthenticator ID: %s\n\tName: %s\n\tNonce: %s" % (self.authenticator, self.idType, self.appID, bytes.fromhex(self.name).decode('ascii'), self.nonce)
 
 class Nuki_AUTH_ID(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -177,7 +177,7 @@ class Nuki_AUTH_ID_CONFIRM(Nuki_Command):
 		
 	def createPayload(self, publicKeyNuki, privateKeyAuth, publicKeyAuth, nonceNuki, authID):
 		self.authID = ("%x" % authID).rjust(8,'0')
-		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).encode("hex")
+		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKeyNuki)),bytes(bytearray.fromhex(privateKeyAuth))).hex()
 		valueR = self.authID + nonceNuki
 		self.authenticator = hmac.new(bytearray.fromhex(sharedKey), msg=bytearray.fromhex(valueR), digestmod=hashlib.sha256).hexdigest()
 		self.payload = self.authenticator + self.authID
@@ -392,13 +392,13 @@ class Nuki_LOG_ENTRY(Nuki_Command):
 					self.data = "%s - via Bluetooth" % self.data
 				elif trigger == '01':
 					self.data = "%s - manual" % self.data
-					self.name = "N/A".encode("hex")
+					self.name = "N/A".hex()
 				elif trigger == '02':
 					self.data = "%s - via button" % self.data
-					self.name = "N/A".encode("hex")
+					self.name = "N/A".hex()
 			
 	def show(self):
-		return "Nuki_LOG_ENTRY\n\tIndex: %d\n\tTimestamp: %s\n\tName: %s\n\tType: %s\n\tData: %s" % (self.index, self.timestamp, self.name.decode("hex"), self.type, self.data)
+		return "Nuki_LOG_ENTRY\n\tIndex: %d\n\tTimestamp: %s\n\tName: %s\n\tType: %s\n\tData: %s" % (self.index, self.timestamp, bytes.fromhex(self.name).decode('ascii'), self.type, self.data)
 		
 class NukiCommandParser:
 	def __init__(self):
@@ -431,7 +431,7 @@ class NukiCommandParser:
 			command = self.byteSwapper.swap(commandString[:4]).upper()
 			payload = commandString[4:-4]
 			crc = self.byteSwapper.swap(commandString[-4:])
-			print "command = %s, payload = %s, crc = %s" % (command,payload,crc)
+			print(f"command = {command}, payload = {payload}, crc = {crc}")
 			if command == '0001':
 				return Nuki_REQ(payload)
 			elif command == '0003':
@@ -483,9 +483,9 @@ class NukiCommandParser:
 		#print "length: %d" % length
 		encrypted = nonce + msg[60:60+(length*2)]
 		#print "encrypted: %s" % encrypted
-		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKey)),bytes(bytearray.fromhex(privateKey))).encode("hex")
+		sharedKey = crypto_box_beforenm(bytes(bytearray.fromhex(publicKey)),bytes(bytearray.fromhex(privateKey))).hex()
 		box = nacl.secret.SecretBox(bytes(bytearray.fromhex(sharedKey)))
-		decrypted = box.decrypt(bytes(bytearray.fromhex(encrypted))).encode("hex")
+		decrypted = box.decrypt(bytes(bytearray.fromhex(encrypted))).hex()
 		#print "decrypted: %s" % decrypted
 		return decrypted
 		
@@ -495,7 +495,7 @@ if __name__ == "__main__":
 	commandParsed = parser.parse(commandString)
 	if parser.isNukiCommand(commandString):
 		commandShow = commandParsed.show()
-		print commandShow
+		print(commandShow)
 	else:
-		print commandParsed
-	print "Done"
+		print(commandParsed)
+	print("Done")

@@ -1,6 +1,7 @@
 mkdir -p /tmp/bluez/bluez-5.51
 wget "http://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz" -O /tmp/bluez/bluez-5.51.tar.xz
-tar xvf /tmp/bluez/bluez-5.51.tar.xz -C /tmp/bluez/bluez-5.51
+tar xvf /tmp/bluez/bluez-5.51.tar.xz -C /tmp/bluez/
+cd /tmp/bluez/bluez-5.51
 /tmp/bluez/bluez-5.51/configure
 make  -C /tmp/bluez/bluez-5.51
 sudo make install -C /tmp/bluez/bluez-5.51

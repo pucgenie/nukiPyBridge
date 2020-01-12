@@ -7,7 +7,7 @@ from byteswap import ByteSwapper
 from crc import CrcCalculator
 import nuki_messages
 import sys
-import ConfigParser
+import configparser
 import blescan
 import bluetooth._bluetooth as bluez
 
@@ -21,7 +21,7 @@ class Nuki():
         self.crcCalculator = CrcCalculator()
         self.byteSwapper = ByteSwapper()
         self.macAddress = macAddress
-        self.config = ConfigParser.RawConfigParser()
+        self.config = configparser.RawConfigParser()
         self.config.read(cfg)
         self.device = None
 

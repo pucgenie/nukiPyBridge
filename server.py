@@ -1,5 +1,5 @@
 from flask import Flask 
-from ConfigParser import SafeConfigParser 
+from configparser import SafeConfigParser 
 import nuki 
 from nacl.public import PrivateKey 
 from flask import jsonify
