@@ -1,5 +1,5 @@
 # Pull base image
-FROM python:2.7.13-stretch
+FROM python:3.7.6-stretch
 MAINTAINER Gert-Jan Compagner
 
 # Install dependencies
@@ -22,11 +22,11 @@ libreadline-dev \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install pygatt
-RUN pip install pynacl
-RUN pip install crc16
-RUN pip install pybluez
-RUN pip install pexpect
+RUN pip3 install pygatt
+RUN pip3 install pynacl
+RUN pip3 install crc16
+RUN pip3 install pybluez
+RUN pip3 install pexpect
 RUN apt-get update && apt-get install -y wget
 
 RUN mkdir /tmp/bluez

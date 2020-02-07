@@ -28,8 +28,8 @@ def get_config():
 def connect(mac_address, name):
     # generate the private key which must be kept secret
     keypair = PrivateKey.generate()
-    myPublicKeyHex = keypair.public_key.__bytes__().encode("hex")
-    myPrivateKeyHex = keypair.__bytes__().encode("hex")
+    myPublicKeyHex = keypair.public_key.__bytes__().hex()
+    myPrivateKeyHex = keypair.__bytes__().hex()
     myID = 50
     # id-type = 00 (app), 01 (bridge) or 02 (fob)
     # take 01 (bridge) if you want to make sure that the 'new state available'-flag is cleared on the Nuki if you read it out the state using this library

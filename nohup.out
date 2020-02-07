@@ -1,0 +1,2123 @@
+Sending build context to Docker daemon  187.4kB
+Step 1/23 : FROM python:3.7.6-stretch
+3.7.6-stretch: Pulling from library/python
+cc3b08e804cc: Pulling fs layer
+aa649f4f33c2: Pulling fs layer
+901c0c16dce9: Pulling fs layer
+715a264d83dc: Pulling fs layer
+854dcba3350b: Pulling fs layer
+410de153163e: Pulling fs layer
+0dfe9f29cac8: Pulling fs layer
+7e6f29f66ccd: Pulling fs layer
+0d7835e34f8d: Pulling fs layer
+715a264d83dc: Waiting
+854dcba3350b: Waiting
+410de153163e: Waiting
+0dfe9f29cac8: Waiting
+7e6f29f66ccd: Waiting
+0d7835e34f8d: Waiting
+901c0c16dce9: Verifying Checksum
+901c0c16dce9: Download complete
+aa649f4f33c2: Verifying Checksum
+aa649f4f33c2: Download complete
+cc3b08e804cc: Verifying Checksum
+cc3b08e804cc: Download complete
+410de153163e: Verifying Checksum
+410de153163e: Download complete
+715a264d83dc: Verifying Checksum
+715a264d83dc: Download complete
+7e6f29f66ccd: Verifying Checksum
+7e6f29f66ccd: Download complete
+0dfe9f29cac8: Verifying Checksum
+0dfe9f29cac8: Download complete
+0d7835e34f8d: Verifying Checksum
+0d7835e34f8d: Download complete
+cc3b08e804cc: Pull complete
+aa649f4f33c2: Pull complete
+901c0c16dce9: Pull complete
+854dcba3350b: Download complete
+715a264d83dc: Pull complete
+854dcba3350b: Pull complete
+410de153163e: Pull complete
+0dfe9f29cac8: Pull complete
+7e6f29f66ccd: Pull complete
+0d7835e34f8d: Pull complete
+Digest: sha256:f284105bd968f67723542f518c45311da89678a8e68ff1d84d8d20273e6d4f36
+Status: Downloaded newer image for python:3.7.6-stretch
+ ---> 9a314acb75fc
+Step 2/23 : MAINTAINER Gert-Jan Compagner
+ ---> Running in 46a7a0a956f9
+Removing intermediate container 46a7a0a956f9
+ ---> 3a7bf188d680
+Step 3/23 : RUN apt-get update && apt-get install -y     vim     gcc     build-essential     libglib2.0-dev     bluez     libbluetooth-dev     libffi-dev libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev     libboost-python-dev     git     --no-install-recommends &&     rm -rf /var/lib/apt/lists/*
+ ---> Running in 16316736e279
+Ign:1 http://deb.debian.org/debian stretch InRelease
+Get:2 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:3 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Get:4 http://deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://deb.debian.org/debian stretch Release.gpg [2365 B]
+Get:6 http://deb.debian.org/debian stretch-updates/main armhf Packages [27.9 kB]
+Get:7 http://security.debian.org/debian-security stretch/updates/main armhf Packages [495 kB]
+Get:8 http://deb.debian.org/debian stretch/main armhf Packages [6915 kB]
+Fetched 7744 kB in 4s (1802 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libbluetooth-dev is already the newest version (5.43-2+deb9u1).
+gcc is already the newest version (4:6.3.0-4).
+libglib2.0-dev is already the newest version (2.50.3-2+deb9u1).
+libffi-dev is already the newest version (3.2.1-6).
+libreadline-dev is already the newest version (7.0-3).
+git is already the newest version (1:2.11.0-3+deb9u5).
+The following additional packages will be installed:
+  dbus kmod libapparmor1 libboost-python1.62-dev libboost-python1.62.0
+  libboost1.62-dev libgpm2 libical2 libkmod2 libpython-dev libpython2.7
+  libpython2.7-dev libpython3-dev libpython3.5 libpython3.5-dev libusb-0.1-4
+  python-dev python2.7-dev python3-dev python3.5-dev udev vim-common
+  vim-runtime xxd
+Suggested packages:
+  pulseaudio-module-bluetooth default-dbus-session-bus | dbus-session-bus
+  libboost1.62-doc gccxml libboost-atomic1.62-dev libboost-chrono1.62-dev
+  libboost-context1.62-dev libboost-coroutine1.62-dev
+  libboost-date-time1.62-dev libboost-exception1.62-dev libboost-fiber1.62-dev
+  libboost-filesystem1.62-dev libboost-graph1.62-dev
+  libboost-graph-parallel1.62-dev libboost-iostreams1.62-dev
+  libboost-locale1.62-dev libboost-log1.62-dev libboost-math1.62-dev
+  libboost-mpi1.62-dev libboost-mpi-python1.62-dev
+  libboost-program-options1.62-dev libboost-random1.62-dev
+  libboost-regex1.62-dev libboost-serialization1.62-dev
+  libboost-signals1.62-dev libboost-system1.62-dev libboost-test1.62-dev
+  libboost-thread1.62-dev libboost-timer1.62-dev libboost-type-erasure1.62-dev
+  libboost-wave1.62-dev libboost1.62-tools-dev libmpfrc++-dev libntl-dev gpm
+  ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  bluez build-essential dbus kmod libapparmor1 libboost-python-dev
+  libboost-python1.62-dev libboost-python1.62.0 libboost1.62-dev libdbus-1-dev
+  libgpm2 libical-dev libical2 libkmod2 libpython-dev libpython2.7
+  libpython2.7-dev libpython3-dev libpython3.5 libpython3.5-dev libudev-dev
+  libusb-0.1-4 libusb-dev python-dev python2.7-dev python3-dev python3.5-dev
+  udev vim vim-common vim-runtime xxd
+0 upgraded, 32 newly installed, 0 to remove and 2 not upgraded.
+Need to get 84.6 MB of archives.
+After this operation, 252 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian stretch/main armhf libkmod2 armhf 23-2 [43.4 kB]
+Get:2 http://deb.debian.org/debian stretch/main armhf udev armhf 232-25+deb9u12 [1078 kB]
+Get:3 http://deb.debian.org/debian stretch/main armhf libudev-dev armhf 232-25+deb9u12 [92.5 kB]
+Get:4 http://deb.debian.org/debian stretch/main armhf kmod armhf 23-2 [78.2 kB]
+Get:5 http://deb.debian.org/debian stretch/main armhf xxd armhf 2:8.0.0197-4+deb9u3 [132 kB]
+Get:6 http://deb.debian.org/debian stretch/main armhf vim-common all 2:8.0.0197-4+deb9u3 [159 kB]
+Get:7 http://deb.debian.org/debian stretch/main armhf libapparmor1 armhf 2.11.0-3+deb9u2 [75.0 kB]
+Get:8 http://deb.debian.org/debian stretch/main armhf dbus armhf 1.10.28-0+deb9u1 [198 kB]
+Get:9 http://deb.debian.org/debian stretch/main armhf libgpm2 armhf 1.20.4-6.2+b1 [33.3 kB]
+Get:10 http://deb.debian.org/debian stretch/main armhf bluez armhf 5.43-2+deb9u1 [811 kB]
+Get:11 http://deb.debian.org/debian stretch/main armhf build-essential armhf 12.3 [7342 B]
+Get:12 http://deb.debian.org/debian stretch/main armhf libboost1.62-dev armhf 1.62.0+dfsg-4 [7053 kB]
+Get:13 http://deb.debian.org/debian stretch/main armhf libboost-python1.62.0 armhf 1.62.0+dfsg-4 [121 kB]
+Get:14 http://deb.debian.org/debian stretch/main armhf libpython2.7 armhf 2.7.13-2+deb9u3 [940 kB]
+Get:15 http://deb.debian.org/debian stretch/main armhf libpython2.7-dev armhf 2.7.13-2+deb9u3 [27.7 MB]
+Get:16 http://deb.debian.org/debian stretch/main armhf libpython-dev armhf 2.7.13-2 [20.0 kB]
+Get:17 http://deb.debian.org/debian stretch/main armhf python2.7-dev armhf 2.7.13-2+deb9u3 [289 kB]
+Get:18 http://deb.debian.org/debian stretch/main armhf python-dev armhf 2.7.13-2 [1130 B]
+Get:19 http://deb.debian.org/debian stretch/main armhf libpython3.5 armhf 3.5.3-1+deb9u1 [1204 kB]
+Get:20 http://deb.debian.org/debian stretch/main armhf libpython3.5-dev armhf 3.5.3-1+deb9u1 [37.0 MB]
+Get:21 http://deb.debian.org/debian stretch/main armhf libpython3-dev armhf 3.5.3-1 [18.7 kB]
+Get:22 http://deb.debian.org/debian stretch/main armhf python3.5-dev armhf 3.5.3-1+deb9u1 [413 kB]
+Get:23 http://deb.debian.org/debian stretch/main armhf python3-dev armhf 3.5.3-1 [1158 B]
+Get:24 http://deb.debian.org/debian stretch/main armhf libboost-python1.62-dev armhf 1.62.0+dfsg-4 [164 kB]
+Get:25 http://deb.debian.org/debian stretch/main armhf libboost-python-dev armhf 1.62.0.1 [3802 B]
+Get:26 http://deb.debian.org/debian stretch/main armhf libdbus-1-dev armhf 1.10.28-0+deb9u1 [214 kB]
+Get:27 http://deb.debian.org/debian stretch/main armhf libical2 armhf 2.0.0-0.5+b1 [167 kB]
+Get:28 http://deb.debian.org/debian stretch/main armhf libical-dev armhf 2.0.0-0.5+b1 [205 kB]
+Get:29 http://deb.debian.org/debian stretch/main armhf libusb-0.1-4 armhf 2:0.1.12-30 [21.4 kB]
+Get:30 http://deb.debian.org/debian stretch/main armhf libusb-dev armhf 2:0.1.12-30 [36.2 kB]
+Get:31 http://deb.debian.org/debian stretch/main armhf vim-runtime all 2:8.0.0197-4+deb9u3 [5409 kB]
+Get:32 http://deb.debian.org/debian stretch/main armhf vim armhf 2:8.0.0197-4+deb9u3 [897 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 84.6 MB in 3s (26.4 MB/s)
+Selecting previously unselected package libkmod2:armhf.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 30365 files and directories currently installed.)
+Preparing to unpack .../00-libkmod2_23-2_armhf.deb ...
+Unpacking libkmod2:armhf (23-2) ...
+Selecting previously unselected package udev.
+Preparing to unpack .../01-udev_232-25+deb9u12_armhf.deb ...
+Unpacking udev (232-25+deb9u12) ...
+Selecting previously unselected package libudev-dev:armhf.
+Preparing to unpack .../02-libudev-dev_232-25+deb9u12_armhf.deb ...
+Unpacking libudev-dev:armhf (232-25+deb9u12) ...
+Selecting previously unselected package kmod.
+Preparing to unpack .../03-kmod_23-2_armhf.deb ...
+Unpacking kmod (23-2) ...
+Selecting previously unselected package xxd.
+Preparing to unpack .../04-xxd_2%3a8.0.0197-4+deb9u3_armhf.deb ...
+Unpacking xxd (2:8.0.0197-4+deb9u3) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../05-vim-common_2%3a8.0.0197-4+deb9u3_all.deb ...
+Unpacking vim-common (2:8.0.0197-4+deb9u3) ...
+Selecting previously unselected package libapparmor1:armhf.
+Preparing to unpack .../06-libapparmor1_2.11.0-3+deb9u2_armhf.deb ...
+Unpacking libapparmor1:armhf (2.11.0-3+deb9u2) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../07-dbus_1.10.28-0+deb9u1_armhf.deb ...
+Unpacking dbus (1.10.28-0+deb9u1) ...
+Selecting previously unselected package libgpm2:armhf.
+Preparing to unpack .../08-libgpm2_1.20.4-6.2+b1_armhf.deb ...
+Unpacking libgpm2:armhf (1.20.4-6.2+b1) ...
+Selecting previously unselected package bluez.
+Preparing to unpack .../09-bluez_5.43-2+deb9u1_armhf.deb ...
+Unpacking bluez (5.43-2+deb9u1) ...
+Selecting previously unselected package build-essential.
+Preparing to unpack .../10-build-essential_12.3_armhf.deb ...
+Unpacking build-essential (12.3) ...
+Selecting previously unselected package libboost1.62-dev:armhf.
+Preparing to unpack .../11-libboost1.62-dev_1.62.0+dfsg-4_armhf.deb ...
+Unpacking libboost1.62-dev:armhf (1.62.0+dfsg-4) ...
+Selecting previously unselected package libboost-python1.62.0.
+Preparing to unpack .../12-libboost-python1.62.0_1.62.0+dfsg-4_armhf.deb ...
+Unpacking libboost-python1.62.0 (1.62.0+dfsg-4) ...
+Selecting previously unselected package libpython2.7:armhf.
+Preparing to unpack .../13-libpython2.7_2.7.13-2+deb9u3_armhf.deb ...
+Unpacking libpython2.7:armhf (2.7.13-2+deb9u3) ...
+Selecting previously unselected package libpython2.7-dev:armhf.
+Preparing to unpack .../14-libpython2.7-dev_2.7.13-2+deb9u3_armhf.deb ...
+Unpacking libpython2.7-dev:armhf (2.7.13-2+deb9u3) ...
+Selecting previously unselected package libpython-dev:armhf.
+Preparing to unpack .../15-libpython-dev_2.7.13-2_armhf.deb ...
+Unpacking libpython-dev:armhf (2.7.13-2) ...
+Selecting previously unselected package python2.7-dev.
+Preparing to unpack .../16-python2.7-dev_2.7.13-2+deb9u3_armhf.deb ...
+Unpacking python2.7-dev (2.7.13-2+deb9u3) ...
+Selecting previously unselected package python-dev.
+Preparing to unpack .../17-python-dev_2.7.13-2_armhf.deb ...
+Unpacking python-dev (2.7.13-2) ...
+Selecting previously unselected package libpython3.5:armhf.
+Preparing to unpack .../18-libpython3.5_3.5.3-1+deb9u1_armhf.deb ...
+Unpacking libpython3.5:armhf (3.5.3-1+deb9u1) ...
+Selecting previously unselected package libpython3.5-dev:armhf.
+Preparing to unpack .../19-libpython3.5-dev_3.5.3-1+deb9u1_armhf.deb ...
+Unpacking libpython3.5-dev:armhf (3.5.3-1+deb9u1) ...
+Selecting previously unselected package libpython3-dev:armhf.
+Preparing to unpack .../20-libpython3-dev_3.5.3-1_armhf.deb ...
+Unpacking libpython3-dev:armhf (3.5.3-1) ...
+Selecting previously unselected package python3.5-dev.
+Preparing to unpack .../21-python3.5-dev_3.5.3-1+deb9u1_armhf.deb ...
+Unpacking python3.5-dev (3.5.3-1+deb9u1) ...
+Selecting previously unselected package python3-dev.
+Preparing to unpack .../22-python3-dev_3.5.3-1_armhf.deb ...
+Unpacking python3-dev (3.5.3-1) ...
+Selecting previously unselected package libboost-python1.62-dev.
+Preparing to unpack .../23-libboost-python1.62-dev_1.62.0+dfsg-4_armhf.deb ...
+Unpacking libboost-python1.62-dev (1.62.0+dfsg-4) ...
+Selecting previously unselected package libboost-python-dev.
+Preparing to unpack .../24-libboost-python-dev_1.62.0.1_armhf.deb ...
+Unpacking libboost-python-dev (1.62.0.1) ...
+Selecting previously unselected package libdbus-1-dev:armhf.
+Preparing to unpack .../25-libdbus-1-dev_1.10.28-0+deb9u1_armhf.deb ...
+Unpacking libdbus-1-dev:armhf (1.10.28-0+deb9u1) ...
+Selecting previously unselected package libical2:armhf.
+Preparing to unpack .../26-libical2_2.0.0-0.5+b1_armhf.deb ...
+Unpacking libical2:armhf (2.0.0-0.5+b1) ...
+Selecting previously unselected package libical-dev:armhf.
+Preparing to unpack .../27-libical-dev_2.0.0-0.5+b1_armhf.deb ...
+Unpacking libical-dev:armhf (2.0.0-0.5+b1) ...
+Selecting previously unselected package libusb-0.1-4:armhf.
+Preparing to unpack .../28-libusb-0.1-4_2%3a0.1.12-30_armhf.deb ...
+Unpacking libusb-0.1-4:armhf (2:0.1.12-30) ...
+Selecting previously unselected package libusb-dev.
+Preparing to unpack .../29-libusb-dev_2%3a0.1.12-30_armhf.deb ...
+Unpacking libusb-dev (2:0.1.12-30) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../30-vim-runtime_2%3a8.0.0197-4+deb9u3_all.deb ...
+Adding 'diversion of /usr/share/vim/vim80/doc/help.txt to /usr/share/vim/vim80/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim80/doc/tags to /usr/share/vim/vim80/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.0.0197-4+deb9u3) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../31-vim_2%3a8.0.0197-4+deb9u3_armhf.deb ...
+Unpacking vim (2:8.0.0197-4+deb9u3) ...
+Setting up libdbus-1-dev:armhf (1.10.28-0+deb9u1) ...
+Setting up libical2:armhf (2.0.0-0.5+b1) ...
+Processing triggers for mime-support (3.60) ...
+Setting up xxd (2:8.0.0197-4+deb9u3) ...
+Setting up libboost1.62-dev:armhf (1.62.0+dfsg-4) ...
+Setting up libgpm2:armhf (1.20.4-6.2+b1) ...
+Setting up build-essential (12.3) ...
+Setting up libpython3.5:armhf (3.5.3-1+deb9u1) ...
+Setting up libical-dev:armhf (2.0.0-0.5+b1) ...
+Setting up libpython3.5-dev:armhf (3.5.3-1+deb9u1) ...
+Setting up libkmod2:armhf (23-2) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Setting up udev (232-25+deb9u12) ...
+Adding group `input' (GID 102) ...
+Done.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libapparmor1:armhf (2.11.0-3+deb9u2) ...
+Setting up libpython2.7:armhf (2.7.13-2+deb9u3) ...
+Setting up vim-common (2:8.0.0197-4+deb9u3) ...
+Setting up vim-runtime (2:8.0.0197-4+deb9u3) ...
+Setting up libboost-python1.62.0 (1.62.0+dfsg-4) ...
+Setting up libpython2.7-dev:armhf (2.7.13-2+deb9u3) ...
+Setting up dbus (1.10.28-0+deb9u1) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up python3.5-dev (3.5.3-1+deb9u1) ...
+Processing triggers for hicolor-icon-theme (0.15-1) ...
+Setting up libudev-dev:armhf (232-25+deb9u12) ...
+Setting up python2.7-dev (2.7.13-2+deb9u3) ...
+Setting up libusb-0.1-4:armhf (2:0.1.12-30) ...
+Setting up libpython3-dev:armhf (3.5.3-1) ...
+Setting up libpython-dev:armhf (2.7.13-2) ...
+Setting up kmod (23-2) ...
+Setting up vim (2:8.0.0197-4+deb9u3) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+Setting up python-dev (2.7.13-2) ...
+Setting up python3-dev (3.5.3-1) ...
+Setting up libusb-dev (2:0.1.12-30) ...
+Setting up bluez (5.43-2+deb9u1) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of force-reload.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libboost-python1.62-dev (1.62.0+dfsg-4) ...
+Setting up libboost-python-dev (1.62.0.1) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Processing triggers for dbus (1.10.28-0+deb9u1) ...
+Removing intermediate container 16316736e279
+ ---> a31135c33aed
+Step 4/23 : RUN pip3 install pygatt
+ ---> Running in 0142c6aeee5a
+Collecting pygatt
+  Downloading pygatt-4.0.5.tar.gz (40 kB)
+Collecting pyserial
+  Downloading pyserial-3.4-py2.py3-none-any.whl (193 kB)
+Collecting enum-compat
+  Downloading enum_compat-0.0.3-py3-none-any.whl (1.3 kB)
+Building wheels for collected packages: pygatt
+  Building wheel for pygatt (setup.py): started
+  Building wheel for pygatt (setup.py): finished with status 'done'
+  Created wheel for pygatt: filename=pygatt-4.0.5-py3-none-any.whl size=44935 sha256=8b3a4dd93dc53a09f71acceaf3de7041afad50909c443201accb32fa2ed5265f
+  Stored in directory: /root/.cache/pip/wheels/d1/b4/86/0d2c091218defb15e43169619070a3c0c66aaa752945b26080
+Successfully built pygatt
+Installing collected packages: pyserial, enum-compat, pygatt
+Successfully installed enum-compat-0.0.3 pygatt-4.0.5 pyserial-3.4
+Removing intermediate container 0142c6aeee5a
+ ---> facc6f25d178
+Step 5/23 : RUN pip3 install pynacl
+ ---> Running in 9a918634abeb
+Collecting pynacl
+  Downloading PyNaCl-1.3.0.tar.gz (3.4 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting six
+  Downloading six-1.14.0-py2.py3-none-any.whl (10 kB)
+Processing /root/.cache/pip/wheels/c4/91/4f/81fe591804590e3cd010d6c54f251607dc4c61fc5eb5840a51/cffi-1.14.0-cp37-cp37m-linux_armv7l.whl
+Processing /root/.cache/pip/wheels/0e/53/27/fee7fd9562e10dd046caccfc0340b8cf789b46846e660f3380/pycparser-2.19-py2.py3-none-any.whl
+Building wheels for collected packages: pynacl
+  Building wheel for pynacl (PEP 517): started
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): still running...
+  Building wheel for pynacl (PEP 517): finished with status 'done'
+  Created wheel for pynacl: filename=PyNaCl-1.3.0-cp37-cp37m-linux_armv7l.whl size=587474 sha256=a948e27e52ed413c850eee27f36a73011ed137b4aada3a8d8db95882c1f9a6a7
+  Stored in directory: /root/.cache/pip/wheels/96/4b/45/e2ed4df10e87eaee077c4a0e0274107a683da06713bd0bcbfc
+Successfully built pynacl
+Installing collected packages: six, pycparser, cffi, pynacl
+Successfully installed cffi-1.14.0 pycparser-2.19 pynacl-1.3.0 six-1.14.0
+Removing intermediate container 9a918634abeb
+ ---> 14cc3439285d
+Step 6/23 : RUN pip3 install crc16
+ ---> Running in 46a6c63182cf
+Collecting crc16
+  Downloading crc16-0.1.1.tar.gz (9.6 kB)
+Building wheels for collected packages: crc16
+  Building wheel for crc16 (setup.py): started
+  Building wheel for crc16 (setup.py): finished with status 'done'
+  Created wheel for crc16: filename=crc16-0.1.1-cp37-cp37m-linux_armv7l.whl size=22941 sha256=bc5df119d34ac9870a8be4ce76a71d2e4e9444668914c377111c84e5113316c2
+  Stored in directory: /root/.cache/pip/wheels/6f/2f/9f/8eb63cbc0a327ad713c7c316984fa7e00ab251c1e422c11544
+Successfully built crc16
+Installing collected packages: crc16
+Successfully installed crc16-0.1.1
+Removing intermediate container 46a6c63182cf
+ ---> f0bde12d2707
+Step 7/23 : RUN pip3 install pybluez
+ ---> Running in 88cad84a6956
+Collecting pybluez
+  Downloading PyBluez-0.23.tar.gz (97 kB)
+Building wheels for collected packages: pybluez
+  Building wheel for pybluez (setup.py): started
+  Building wheel for pybluez (setup.py): finished with status 'done'
+  Created wheel for pybluez: filename=PyBluez-0.23-cp37-cp37m-linux_armv7l.whl size=125502 sha256=933c989a13f710be538124cbbb78b5841f44b6511ee91b6a9d1aad7ce227b76f
+  Stored in directory: /root/.cache/pip/wheels/86/41/70/cd8dee07032c22301356f5fc7788d29e5dac164b3e0ac8879a
+Successfully built pybluez
+Installing collected packages: pybluez
+Successfully installed pybluez-0.23
+Removing intermediate container 88cad84a6956
+ ---> 07464dbb2ffb
+Step 8/23 : RUN pip3 install pexpect
+ ---> Running in 9877b99c5319
+Collecting pexpect
+  Downloading pexpect-4.8.0-py2.py3-none-any.whl (59 kB)
+Collecting ptyprocess>=0.5
+  Downloading ptyprocess-0.6.0-py2.py3-none-any.whl (39 kB)
+Installing collected packages: ptyprocess, pexpect
+Successfully installed pexpect-4.8.0 ptyprocess-0.6.0
+Removing intermediate container 9877b99c5319
+ ---> 5ba97648c929
+Step 9/23 : RUN apt-get update && apt-get install -y wget
+ ---> Running in 57b765de294d
+Get:1 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Ign:2 http://deb.debian.org/debian stretch InRelease
+Get:3 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:4 http://deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://deb.debian.org/debian stretch Release.gpg [2365 B]
+Get:6 http://deb.debian.org/debian stretch-updates/main armhf Packages [27.9 kB]
+Get:7 http://security.debian.org/debian-security stretch/updates/main armhf Packages [495 kB]
+Get:8 http://deb.debian.org/debian stretch/main armhf Packages [6915 kB]
+Fetched 7744 kB in 4s (1869 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+wget is already the newest version (1.18-5+deb9u3).
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+Removing intermediate container 57b765de294d
+ ---> b953105e4446
+Step 10/23 : RUN mkdir /tmp/bluez
+ ---> Running in ad1aad3dd1b2
+Removing intermediate container ad1aad3dd1b2
+ ---> c1d6ef69075a
+Step 11/23 : RUN wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz -O /tmp/bluez/bluez-5.51.tar.xz
+ ---> Running in 00859be32632
+[91m--2020-02-07 18:55:36--  http://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz
+Resolving www.kernel.org (www.kernel.org)... [0m[91m136.144.49.103[0m[91m, [0m[91m2604:1380:40b0:1a00::1
+Connecting to www.kernel.org (www.kernel.org)|136.144.49.103|:80... [0m[91mconnected.
+HTTP request sent, awaiting response... [0m[91m301 Moved Permanently
+[0m[91mLocation: https://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz [following]
+[0m[91m--2020-02-07 18:55:37--  https://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz
+[0m[91mConnecting to www.kernel.org (www.kernel.org)|136.144.49.103|:443... [0m[91mconnected.
+[0m[91mHTTP request sent, awaiting response... [0m[91m301 Moved Permanently
+[0m[91mLocation: https://mirrors.edge.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz [following]
+[0m[91m--2020-02-07 18:55:37--  https://mirrors.edge.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz
+[0m[91mResolving mirrors.edge.kernel.org (mirrors.edge.kernel.org)... [0m[91m147.75.101.1[0m[91m, [0m[91m2604:1380:2001:3900::1[0m[91m
+Connecting to mirrors.edge.kernel.org (mirrors.edge.kernel.org)|147.75.101.1|:443... [0m[91mconnected.
+[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+[0m[91mLength: [0m[91m1941904 (1.9M) [application/x-xz]
+[0m[91mSaving to: ‘/tmp/bluez/bluez-5.51.tar.xz’
+[0m[91m
+     0K [0m[91m.[0m[91m.......[0m[91m.[0m[91m.[0m[91m ...[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m [0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m....[0m[91m.[0m[91m. .[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m...[0m[91m.[0m[91m .....[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m  2% 4.43M[0m[91m 0s[0m[91m
+    50K .[0m[91m.[0m[91m....[0m[91m.[0m[91m... ..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.... .[0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m.[0m[91m.[0m[91m....[0m[91m.[0m[91m.. ..[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m..  5% 4.31M 0s
+   100K[0m[91m [0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.. .[0m[91m.[0m[91m..[0m[91m..[0m[91m.[0m[91m... .[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m [0m[91m.[0m[91m.[0m[91m...[0m[91m.[0m[91m.... .[0m[91m.[0m[91m.[0m[91m..[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m  7% 6.64M 0s
+   150K .[0m[91m.[0m[91m.......[0m[91m. [0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m [0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m. [0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m .[0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m.[0m[91m 10% 6.86M[0m[91m 0s[0m[91m
+   200K [0m[91m.[0m[91m..[0m[91m.[0m[91m..[0m[91m.[0m[91m.[0m[91m..[0m[91m [0m[91m...[0m[91m.[0m[91m.[0m[91m.[0m[91m..[0m[91m.[0m[91m. [0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m...... .......... .......... 13% 7.51M 0s
+   250K .....[0m[91m..... .......... .[0m[91m........[0m[91m. .......[0m[91m... ..........[0m[91m 15% 17.0M 0s
+   300K .[0m[91m..[0m[91m......[0m[91m. .........[0m[91m. ....[0m[91m...... .....[0m[91m..... .[0m[91m......... 18% 16.8M 0s
+   350K .[0m[91m......... .......[0m[91m... .......... ...[0m[91m....... .........[0m[91m. 21% 12.9M 0s
+   400K .......... .....[0m[91m..... .[0m[91m......... [0m[91m.[0m[91m......[0m[91m... .......[0m[91m... 23% 17.9M 0s
+   450K .....[0m[91m..... ...[0m[91m....... .........[0m[91m. .......... .....[0m[91m..... 26% 15.8M 0s
+   500K .......... .[0m[91m......... .......... .......... ...[0m[91m....... 29% 15.3M 0s
+   550K .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... .[0m[91m......... .[0m[91m........[0m[91m. 31% 15.7M 0s
+   600K ....[0m[91m...[0m[91m... .....[0m[91m..... [0m[91m...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... 34% 13.3M 0s
+   650K .....[0m[91m..... ..........[0m[91m .[0m[91m.......[0m[91m.. .......[0m[91m... .......... 36%[0m[91m 14.0M 0s
+   700K [0m[91m...[0m[91m.......[0m[91m .........[0m[91m. .....[0m[91m..... .....[0m[91m..... ...[0m[91m....... 39% 13.2M[0m[91m 0s
+   750K .[0m[91m........[0m[91m. .......[0m[91m... ..........[0m[91m ...[0m[91m......[0m[91m. .........[0m[91m. 42% 10.7M 0s
+   800K .......... .....[0m[91m..... .......... [0m[91m.[0m[91m......... .......[0m[91m... 44% 15.1M 0s
+   850K[0m[91m ....[0m[91m.[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......... .....[0m[91m..... 47% 13.1M 0s
+   900K ...[0m[91m....... .[0m[91m.......[0m[91m.. .......[0m[91m... .....[0m[91m....[0m[91m. ...[0m[91m....... 50% 13.2M 0s
+   950K .........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. 52% 16.1M 0s
+  1000K .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... 55% 18.2M 0s
+  1050K .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... 58% 17.4M 0s
+  1100K ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... 60% 18.2M 0s
+  1150K .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. 63% 14.4M 0s
+  1200K .......[0m[91m... .....[0m[91m..... .......... .[0m[91m........[0m[91m. .......[0m[91m... 65%[0m[91m 18.0M 0s
+  1250K .......... ...[0m[91m......[0m[91m. .........[0m[91m. .......[0m[91m... .....[0m[91m..... 68% 17.6M 0s
+  1300K ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... ...[0m[91m....... ...[0m[91m....... 71% 17.2M 0s
+  1350K .[0m[91m....[0m[91m....[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. 73% 17.2M 0s
+  1400K .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... 76% 17.9M 0s
+  1450K .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... 79% 18.3M 0s
+  1500K ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... 81% 17.7M 0s
+  1550K .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. 84% 14.1M 0s
+  1600K .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... 87% 17.8M 0s
+  1650K .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... ....[0m[91m.[0m[91m.....[0m[91m 89% 17.1M 0s
+  1700K ...[0m[91m....... [0m[91m.[0m[91m........[0m[91m. .......[0m[91m... ..[0m[91m...[0m[91m..... ...[0m[91m....... 92%[0m[91m 12.6M 0s
+  1750K [0m[91m.[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. 94%[0m[91m 14.2M 0s
+  1800K .......[0m[91m... ..[0m[91m...[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... 97% 14.6M 0s
+  1850K .....[0m[91m..... ...[0m[91m....... .[0m[91m........[0m[91m. .......[0m[91m... .....[0m[91m.    100% 15.4M=0.1s
+
+[0m[91m2020-02-07 18:55:37 (12.5 MB/s) - ‘/tmp/bluez/bluez-5.51.tar.xz’ saved [1941904/1941904]
+
+[0mRemoving intermediate container 00859be32632
+ ---> 671b5b4dfd3e
+Step 12/23 : WORKDIR /tmp/bluez
+ ---> Running in 2fe8d3129e61
+Removing intermediate container 2fe8d3129e61
+ ---> 273719d05691
+Step 13/23 : RUN tar xvf bluez-5.51.tar.xz
+ ---> Running in eb419e1af62c
+bluez-5.51/
+bluez-5.51/Makefile.plugins
+bluez-5.51/emulator/
+bluez-5.51/emulator/bthost.h
+bluez-5.51/emulator/phy.c
+bluez-5.51/emulator/hfp.c
+bluez-5.51/emulator/hciemu.h
+bluez-5.51/emulator/smp.c
+bluez-5.51/emulator/le.h
+bluez-5.51/emulator/server.c
+bluez-5.51/emulator/bthost.c
+bluez-5.51/emulator/b1ee.c
+bluez-5.51/emulator/serial.h
+bluez-5.51/emulator/vhci.h
+bluez-5.51/emulator/phy.h
+bluez-5.51/emulator/btdev.c
+bluez-5.51/emulator/btdev.h
+bluez-5.51/emulator/main.c
+bluez-5.51/emulator/le.c
+bluez-5.51/emulator/amp.h
+bluez-5.51/emulator/serial.c
+bluez-5.51/emulator/vhci.c
+bluez-5.51/emulator/server.h
+bluez-5.51/emulator/hciemu.c
+bluez-5.51/emulator/amp.c
+bluez-5.51/aclocal.m4
+bluez-5.51/depcomp
+bluez-5.51/INSTALL
+bluez-5.51/peripheral/
+bluez-5.51/peripheral/gatt.h
+bluez-5.51/peripheral/efivars.c
+bluez-5.51/peripheral/log.h
+bluez-5.51/peripheral/attach.c
+bluez-5.51/peripheral/gap.h
+bluez-5.51/peripheral/attach.h
+bluez-5.51/peripheral/gap.c
+bluez-5.51/peripheral/efivars.h
+bluez-5.51/peripheral/gatt.c
+bluez-5.51/peripheral/main.c
+bluez-5.51/peripheral/log.c
+bluez-5.51/Makefile.obexd
+bluez-5.51/mesh/
+bluez-5.51/mesh/dbus.c
+bluez-5.51/mesh/dbus.h
+bluez-5.51/mesh/pb-adv.h
+bluez-5.51/mesh/appkey.h
+bluez-5.51/mesh/mesh-mgmt.c
+bluez-5.51/mesh/cfgmod.h
+bluez-5.51/mesh/bluetooth-mesh.conf
+bluez-5.51/mesh/prov.h
+bluez-5.51/mesh/mesh-io.h
+bluez-5.51/mesh/net.h
+bluez-5.51/mesh/bluetooth-mesh.service.in
+bluez-5.51/mesh/util.h
+bluez-5.51/mesh/friend.c
+bluez-5.51/mesh/mesh-io-generic.c
+bluez-5.51/mesh/agent.c
+bluez-5.51/mesh/crypto.h
+bluez-5.51/mesh/net-keys.c
+bluez-5.51/mesh/keyring.h
+bluez-5.51/mesh/model.c
+bluez-5.51/mesh/mesh-config-json.c
+bluez-5.51/mesh/model.h
+bluez-5.51/mesh/mesh-config.h
+bluez-5.51/mesh/cfgmod-server.c
+bluez-5.51/mesh/mesh-mgmt.h
+bluez-5.51/mesh/provision.h
+bluez-5.51/mesh/mesh-io-generic.h
+bluez-5.51/mesh/main.c
+bluez-5.51/mesh/util.c
+bluez-5.51/mesh/prov-initiator.c
+bluez-5.51/mesh/appkey.c
+bluez-5.51/mesh/manager.h
+bluez-5.51/mesh/mesh-io-api.h
+bluez-5.51/mesh/mesh-io.c
+bluez-5.51/mesh/net-keys.h
+bluez-5.51/mesh/crypto.c
+bluez-5.51/mesh/pb-adv.c
+bluez-5.51/mesh/mesh.h
+bluez-5.51/mesh/org.bluez.mesh.service
+bluez-5.51/mesh/net.c
+bluez-5.51/mesh/manager.c
+bluez-5.51/mesh/node.c
+bluez-5.51/mesh/error.h
+bluez-5.51/mesh/agent.h
+bluez-5.51/mesh/mesh.c
+bluez-5.51/mesh/prov-acceptor.c
+bluez-5.51/mesh/keyring.c
+bluez-5.51/mesh/node.h
+bluez-5.51/mesh/mesh-defs.h
+bluez-5.51/mesh/friend.h
+bluez-5.51/Makefile.tools
+bluez-5.51/config.h.in
+bluez-5.51/btio/
+bluez-5.51/btio/btio.c
+bluez-5.51/btio/btio.h
+bluez-5.51/Makefile.mesh
+bluez-5.51/install-sh
+bluez-5.51/attrib/
+bluez-5.51/attrib/gatt.h
+bluez-5.51/attrib/gatttool.c
+bluez-5.51/attrib/gattrib.c
+bluez-5.51/attrib/gatttool.h
+bluez-5.51/attrib/att-database.h
+bluez-5.51/attrib/interactive.c
+bluez-5.51/attrib/gatt-service.c
+bluez-5.51/attrib/utils.c
+bluez-5.51/attrib/gatt-service.h
+bluez-5.51/attrib/gatt.c
+bluez-5.51/attrib/gattrib.h
+bluez-5.51/attrib/att.c
+bluez-5.51/attrib/att.h
+bluez-5.51/missing
+bluez-5.51/configure.ac
+bluez-5.51/acinclude.m4
+bluez-5.51/NEWS
+bluez-5.51/configure
+bluez-5.51/COPYING
+bluez-5.51/Makefile.am
+bluez-5.51/ell/
+bluez-5.51/ell/queue.c
+bluez-5.51/ell/siphash-private.h
+bluez-5.51/ell/gvariant-private.h
+bluez-5.51/ell/gvariant-util.c
+bluez-5.51/ell/dbus.c
+bluez-5.51/ell/dbus.h
+bluez-5.51/ell/cipher.c
+bluez-5.51/ell/checksum.c
+bluez-5.51/ell/timeout.h
+bluez-5.51/ell/timeout.c
+bluez-5.51/ell/log.h
+bluez-5.51/ell/main.h
+bluez-5.51/ell/util.h
+bluez-5.51/ell/private.h
+bluez-5.51/ell/siphash.c
+bluez-5.51/ell/strv.c
+bluez-5.51/ell/dbus-service.h
+bluez-5.51/ell/idle.c
+bluez-5.51/ell/idle.h
+bluez-5.51/ell/checksum.h
+bluez-5.51/ell/io.c
+bluez-5.51/ell/dbus-service.c
+bluez-5.51/ell/string.c
+bluez-5.51/ell/main.c
+bluez-5.51/ell/util.c
+bluez-5.51/ell/random.c
+bluez-5.51/ell/dbus-util.c
+bluez-5.51/ell/strv.h
+bluez-5.51/ell/io.h
+bluez-5.51/ell/dbus-client.h
+bluez-5.51/ell/queue.h
+bluez-5.51/ell/dbus-client.c
+bluez-5.51/ell/dbus-message.c
+bluez-5.51/ell/signal.c
+bluez-5.51/ell/cipher.h
+bluez-5.51/ell/string.h
+bluez-5.51/ell/dbus-private.h
+bluez-5.51/ell/hashmap.h
+bluez-5.51/ell/signal.h
+bluez-5.51/ell/random.h
+bluez-5.51/ell/hashmap.c
+bluez-5.51/ell/dbus-filter.c
+bluez-5.51/ell/missing.h
+bluez-5.51/ell/log.c
+bluez-5.51/ell/dbus-name-cache.c
+bluez-5.51/doc/
+bluez-5.51/doc/pts-opp.txt
+bluez-5.51/doc/pixit-opp.txt
+bluez-5.51/doc/sap-api.txt
+bluez-5.51/doc/media-api.txt
+bluez-5.51/doc/input-api.txt
+bluez-5.51/doc/adapter-api.txt
+bluez-5.51/doc/obex-agent-api.txt
+bluez-5.51/doc/health-api.txt
+bluez-5.51/doc/btsnoop.txt
+bluez-5.51/doc/test-coverage.txt
+bluez-5.51/doc/test-runner.txt
+bluez-5.51/doc/settings-storage.txt
+bluez-5.51/doc/profile-api.txt
+bluez-5.51/doc/btmon.txt
+bluez-5.51/doc/supported-features.txt
+bluez-5.51/doc/obex-api.txt
+bluez-5.51/doc/pics-opp.txt
+bluez-5.51/doc/mgmt-api.txt
+bluez-5.51/doc/device-api.txt
+bluez-5.51/doc/advertising-api.txt
+bluez-5.51/doc/gatt-api.txt
+bluez-5.51/doc/network-api.txt
+bluez-5.51/doc/assigned-numbers.txt
+bluez-5.51/doc/agent-api.txt
+bluez-5.51/obexd/
+bluez-5.51/obexd/src/
+bluez-5.51/obexd/src/obex.c
+bluez-5.51/obexd/src/transport.c
+bluez-5.51/obexd/src/mimetype.c
+bluez-5.51/obexd/src/service.h
+bluez-5.51/obexd/src/log.h
+bluez-5.51/obexd/src/plugin.h
+bluez-5.51/obexd/src/org.bluez.obex.service
+bluez-5.51/obexd/src/map_ap.h
+bluez-5.51/obexd/src/server.c
+bluez-5.51/obexd/src/transport.h
+bluez-5.51/obexd/src/obex.h
+bluez-5.51/obexd/src/plugin.c
+bluez-5.51/obexd/src/obex-priv.h
+bluez-5.51/obexd/src/main.c
+bluez-5.51/obexd/src/obexd.h
+bluez-5.51/obexd/src/manager.h
+bluez-5.51/obexd/src/service.c
+bluez-5.51/obexd/src/mimetype.h
+bluez-5.51/obexd/src/obex.service.in
+bluez-5.51/obexd/src/manager.c
+bluez-5.51/obexd/src/server.h
+bluez-5.51/obexd/src/genbuiltin
+bluez-5.51/obexd/src/log.c
+bluez-5.51/obexd/plugins/
+bluez-5.51/obexd/plugins/messages-dummy.c
+bluez-5.51/obexd/plugins/bluetooth.c
+bluez-5.51/obexd/plugins/ftp.h
+bluez-5.51/obexd/plugins/phonebook-dummy.c
+bluez-5.51/obexd/plugins/filesystem.c
+bluez-5.51/obexd/plugins/mas.c
+bluez-5.51/obexd/plugins/opp.c
+bluez-5.51/obexd/plugins/messages.h
+bluez-5.51/obexd/plugins/phonebook.h
+bluez-5.51/obexd/plugins/vcard.c
+bluez-5.51/obexd/plugins/vcard.h
+bluez-5.51/obexd/plugins/pcsuite.c
+bluez-5.51/obexd/plugins/ftp.c
+bluez-5.51/obexd/plugins/filesystem.h
+bluez-5.51/obexd/plugins/pbap.c
+bluez-5.51/obexd/plugins/irmc.c
+bluez-5.51/obexd/client/
+bluez-5.51/obexd/client/map-event.h
+bluez-5.51/obexd/client/bluetooth.c
+bluez-5.51/obexd/client/pbap.h
+bluez-5.51/obexd/client/transfer.h
+bluez-5.51/obexd/client/ftp.h
+bluez-5.51/obexd/client/transport.c
+bluez-5.51/obexd/client/opp.h
+bluez-5.51/obexd/client/mns.c
+bluez-5.51/obexd/client/opp.c
+bluez-5.51/obexd/client/transport.h
+bluez-5.51/obexd/client/sync.h
+bluez-5.51/obexd/client/ftp.c
+bluez-5.51/obexd/client/map.c
+bluez-5.51/obexd/client/transfer.c
+bluez-5.51/obexd/client/pbap.c
+bluez-5.51/obexd/client/sync.c
+bluez-5.51/obexd/client/manager.h
+bluez-5.51/obexd/client/session.c
+bluez-5.51/obexd/client/bluetooth.h
+bluez-5.51/obexd/client/session.h
+bluez-5.51/obexd/client/map-event.c
+bluez-5.51/obexd/client/driver.c
+bluez-5.51/obexd/client/manager.c
+bluez-5.51/obexd/client/map.h
+bluez-5.51/obexd/client/driver.h
+bluez-5.51/src/
+bluez-5.51/src/sdp-client.c
+bluez-5.51/src/backtrace.c
+bluez-5.51/src/sdpd-database.c
+bluez-5.51/src/service.h
+bluez-5.51/src/attrib-server.c
+bluez-5.51/src/gatt-database.c
+bluez-5.51/src/sdpd-server.c
+bluez-5.51/src/gatt-client.h
+bluez-5.51/src/log.h
+bluez-5.51/src/plugin.h
+bluez-5.51/src/sdp-client.h
+bluez-5.51/src/shared/
+bluez-5.51/src/shared/queue.c
+bluez-5.51/src/shared/tester.h
+bluez-5.51/src/shared/mainloop-notify.h
+bluez-5.51/src/shared/hfp.c
+bluez-5.51/src/shared/att-types.h
+bluez-5.51/src/shared/gatt-server.c
+bluez-5.51/src/shared/timeout.h
+bluez-5.51/src/shared/gatt-client.h
+bluez-5.51/src/shared/gatt-server.h
+bluez-5.51/src/shared/log.h
+bluez-5.51/src/shared/ad.h
+bluez-5.51/src/shared/gatt-db.h
+bluez-5.51/src/shared/util.h
+bluez-5.51/src/shared/mainloop.c
+bluez-5.51/src/shared/timeout-mainloop.c
+bluez-5.51/src/shared/hci.c
+bluez-5.51/src/shared/ad.c
+bluez-5.51/src/shared/pcap.c
+bluez-5.51/src/shared/ecc.h
+bluez-5.51/src/shared/uhid.c
+bluez-5.51/src/shared/tester.c
+bluez-5.51/src/shared/gatt-helpers.c
+bluez-5.51/src/shared/uhid.h
+bluez-5.51/src/shared/crypto.h
+bluez-5.51/src/shared/gap.h
+bluez-5.51/src/shared/ringbuf.h
+bluez-5.51/src/shared/io-mainloop.c
+bluez-5.51/src/shared/btsnoop.c
+bluez-5.51/src/shared/tty.h
+bluez-5.51/src/shared/timeout-glib.c
+bluez-5.51/src/shared/gatt-helpers.h
+bluez-5.51/src/shared/ringbuf.c
+bluez-5.51/src/shared/hci-crypto.c
+bluez-5.51/src/shared/btsnoop.h
+bluez-5.51/src/shared/mgmt.h
+bluez-5.51/src/shared/pcap.h
+bluez-5.51/src/shared/mainloop-glib.c
+bluez-5.51/src/shared/gap.c
+bluez-5.51/src/shared/hfp.h
+bluez-5.51/src/shared/io-ell.c
+bluez-5.51/src/shared/util.c
+bluez-5.51/src/shared/ecc.c
+bluez-5.51/src/shared/btp.h
+bluez-5.51/src/shared/io.h
+bluez-5.51/src/shared/btp.c
+bluez-5.51/src/shared/hci-crypto.h
+bluez-5.51/src/shared/queue.h
+bluez-5.51/src/shared/io-glib.c
+bluez-5.51/src/shared/crypto.c
+bluez-5.51/src/shared/mgmt.c
+bluez-5.51/src/shared/mainloop.h
+bluez-5.51/src/shared/hci.h
+bluez-5.51/src/shared/shell.c
+bluez-5.51/src/shared/gatt-client.c
+bluez-5.51/src/shared/att.c
+bluez-5.51/src/shared/mainloop-notify.c
+bluez-5.51/src/shared/shell.h
+bluez-5.51/src/shared/gatt-db.c
+bluez-5.51/src/shared/att.h
+bluez-5.51/src/shared/log.c
+bluez-5.51/src/main.conf
+bluez-5.51/src/oui.c
+bluez-5.51/src/adapter.h
+bluez-5.51/src/bluetooth.service.in
+bluez-5.51/src/agent.c
+bluez-5.51/src/uuid-helper.h
+bluez-5.51/src/storage.c
+bluez-5.51/src/profile.h
+bluez-5.51/src/plugin.c
+bluez-5.51/src/profile.c
+bluez-5.51/src/rfkill.c
+bluez-5.51/src/adapter.c
+bluez-5.51/src/sdpd-request.c
+bluez-5.51/src/device.c
+bluez-5.51/src/eir.h
+bluez-5.51/src/uinput.h
+bluez-5.51/src/org.bluez.service
+bluez-5.51/src/storage.h
+bluez-5.51/src/uuid-helper.c
+bluez-5.51/src/textfile.c
+bluez-5.51/src/oui.h
+bluez-5.51/src/bluetoothd.8.in
+bluez-5.51/src/dbus-common.h
+bluez-5.51/src/device.h
+bluez-5.51/src/main.c
+bluez-5.51/src/hcid.h
+bluez-5.51/src/sdpd-service.c
+bluez-5.51/src/service.c
+bluez-5.51/src/dbus-common.c
+bluez-5.51/src/sdp-xml.c
+bluez-5.51/src/sdpd.h
+bluez-5.51/src/gatt-database.h
+bluez-5.51/src/bluetooth.ver
+bluez-5.51/src/textfile.h
+bluez-5.51/src/bluetooth.conf
+bluez-5.51/src/advertising.h
+bluez-5.51/src/backtrace.h
+bluez-5.51/src/error.h
+bluez-5.51/src/agent.h
+bluez-5.51/src/gatt-client.c
+bluez-5.51/src/attrib-server.h
+bluez-5.51/src/sdp-xml.h
+bluez-5.51/src/eir.c
+bluez-5.51/src/error.c
+bluez-5.51/src/genbuiltin
+bluez-5.51/src/log.c
+bluez-5.51/src/advertising.c
+bluez-5.51/profiles/
+bluez-5.51/profiles/cups/
+bluez-5.51/profiles/cups/cups.h
+bluez-5.51/profiles/cups/spp.c
+bluez-5.51/profiles/cups/hcrp.c
+bluez-5.51/profiles/cups/sdp.c
+bluez-5.51/profiles/cups/main.c
+bluez-5.51/profiles/deviceinfo/
+bluez-5.51/profiles/deviceinfo/deviceinfo.c
+bluez-5.51/profiles/deviceinfo/dis.h
+bluez-5.51/profiles/deviceinfo/dis.c
+bluez-5.51/profiles/network/
+bluez-5.51/profiles/network/connection.c
+bluez-5.51/profiles/network/bnep.h
+bluez-5.51/profiles/network/server.c
+bluez-5.51/profiles/network/connection.h
+bluez-5.51/profiles/network/manager.c
+bluez-5.51/profiles/network/server.h
+bluez-5.51/profiles/network/bnep.c
+bluez-5.51/profiles/network/network.conf
+bluez-5.51/profiles/iap/
+bluez-5.51/profiles/iap/main.c
+bluez-5.51/profiles/health/
+bluez-5.51/profiles/health/hdp_main.c
+bluez-5.51/profiles/health/hdp.h
+bluez-5.51/profiles/health/mcap.h
+bluez-5.51/profiles/health/hdp_util.c
+bluez-5.51/profiles/health/hdp_manager.c
+bluez-5.51/profiles/health/mcap.c
+bluez-5.51/profiles/health/hdp_manager.h
+bluez-5.51/profiles/health/hdp.c
+bluez-5.51/profiles/health/hdp_util.h
+bluez-5.51/profiles/health/hdp_types.h
+bluez-5.51/profiles/scanparam/
+bluez-5.51/profiles/scanparam/scan.c
+bluez-5.51/profiles/scanparam/scpp.h
+bluez-5.51/profiles/scanparam/scpp.c
+bluez-5.51/profiles/input/
+bluez-5.51/profiles/input/uhid_copy.h
+bluez-5.51/profiles/input/suspend-dummy.c
+bluez-5.51/profiles/input/suspend-none.c
+bluez-5.51/profiles/input/server.c
+bluez-5.51/profiles/input/sixaxis.h
+bluez-5.51/profiles/input/hog-lib.h
+bluez-5.51/profiles/input/suspend.h
+bluez-5.51/profiles/input/device.c
+bluez-5.51/profiles/input/hog.c
+bluez-5.51/profiles/input/input.conf
+bluez-5.51/profiles/input/device.h
+bluez-5.51/profiles/input/hidp_defs.h
+bluez-5.51/profiles/input/manager.c
+bluez-5.51/profiles/input/hog-lib.c
+bluez-5.51/profiles/input/server.h
+bluez-5.51/profiles/audio/
+bluez-5.51/profiles/audio/player.h
+bluez-5.51/profiles/audio/media.c
+bluez-5.51/profiles/audio/source.c
+bluez-5.51/profiles/audio/transport.c
+bluez-5.51/profiles/audio/sink.h
+bluez-5.51/profiles/audio/a2dp.h
+bluez-5.51/profiles/audio/media.h
+bluez-5.51/profiles/audio/a2dp.c
+bluez-5.51/profiles/audio/transport.h
+bluez-5.51/profiles/audio/control.c
+bluez-5.51/profiles/audio/avrcp.h
+bluez-5.51/profiles/audio/avctp.c
+bluez-5.51/profiles/audio/a2dp-codecs.h
+bluez-5.51/profiles/audio/avrcp.c
+bluez-5.51/profiles/audio/source.h
+bluez-5.51/profiles/audio/avdtp.h
+bluez-5.51/profiles/audio/player.c
+bluez-5.51/profiles/audio/sink.c
+bluez-5.51/profiles/audio/avctp.h
+bluez-5.51/profiles/audio/avdtp.c
+bluez-5.51/profiles/audio/control.h
+bluez-5.51/profiles/midi/
+bluez-5.51/profiles/midi/midi.c
+bluez-5.51/profiles/midi/libmidi.h
+bluez-5.51/profiles/midi/libmidi.c
+bluez-5.51/profiles/battery/
+bluez-5.51/profiles/battery/battery.c
+bluez-5.51/profiles/battery/bas.h
+bluez-5.51/profiles/battery/bas.c
+bluez-5.51/profiles/gap/
+bluez-5.51/profiles/gap/gas.c
+bluez-5.51/profiles/sap/
+bluez-5.51/profiles/sap/server.c
+bluez-5.51/profiles/sap/main.c
+bluez-5.51/profiles/sap/manager.h
+bluez-5.51/profiles/sap/sap-dummy.c
+bluez-5.51/profiles/sap/sap.h
+bluez-5.51/profiles/sap/manager.c
+bluez-5.51/profiles/sap/server.h
+bluez-5.51/android/
+bluez-5.51/android/pts-map.txt
+bluez-5.51/android/hal-ipc-api.txt
+bluez-5.51/android/hidhost.c
+bluez-5.51/android/tester-hdp.c
+bluez-5.51/android/pts-a2dp.txt
+bluez-5.51/android/pts-avdtp.txt
+bluez-5.51/android/pts-iopt.txt
+bluez-5.51/android/pts-opp.txt
+bluez-5.51/android/pics-mcap.txt
+bluez-5.51/android/hardware/
+bluez-5.51/android/hardware/bt_hf.h
+bluez-5.51/android/hardware/bt_hh.h
+bluez-5.51/android/hardware/bt_av.h
+bluez-5.51/android/hardware/bt_mce.h
+bluez-5.51/android/hardware/bt_sock.h
+bluez-5.51/android/hardware/bt_hl.h
+bluez-5.51/android/hardware/bt_gatt_client.h
+bluez-5.51/android/hardware/bt_gatt.h
+bluez-5.51/android/hardware/bt_hf_client.h
+bluez-5.51/android/hardware/hardware.h
+bluez-5.51/android/hardware/bt_pan.h
+bluez-5.51/android/hardware/bluetooth.h
+bluez-5.51/android/hardware/audio_effect.h
+bluez-5.51/android/hardware/audio.h
+bluez-5.51/android/hardware/bt_rc.h
+bluez-5.51/android/hardware/hardware.c
+bluez-5.51/android/hardware/bt_gatt_types.h
+bluez-5.51/android/hardware/bt_gatt_server.h
+bluez-5.51/android/pts-pan.txt
+bluez-5.51/android/bluetooth.c
+bluez-5.51/android/health.h
+bluez-5.51/android/pixit-opp.txt
+bluez-5.51/android/gatt.h
+bluez-5.51/android/pts-hogp.txt
+bluez-5.51/android/pics-gatt.txt
+bluez-5.51/android/pics-rfcomm.txt
+bluez-5.51/android/tester-main.c
+bluez-5.51/android/pixit-hogp.txt
+bluez-5.51/android/pts-did.txt
+bluez-5.51/android/pixit-mcap.txt
+bluez-5.51/android/pixit-spp.txt
+bluez-5.51/android/pan.h
+bluez-5.51/android/hal-map-client.c
+bluez-5.51/android/a2dp.h
+bluez-5.51/android/pan.c
+bluez-5.51/android/pts-sdp.txt
+bluez-5.51/android/pixit-did.txt
+bluez-5.51/android/pts-gap.txt
+bluez-5.51/android/pics-bnep.txt
+bluez-5.51/android/pixit-bnep.txt
+bluez-5.51/android/tester-avrcp.c
+bluez-5.51/android/hal-ipc.h
+bluez-5.51/android/pics-pan.txt
+bluez-5.51/android/pics-map.txt
+bluez-5.51/android/ipc-tester.c
+bluez-5.51/android/hal-handsfree-client.c
+bluez-5.51/android/tester-a2dp.c
+bluez-5.51/android/hal-hidhost.c
+bluez-5.51/android/a2dp.c
+bluez-5.51/android/pics-gap.txt
+bluez-5.51/android/pics-hfp.txt
+bluez-5.51/android/sco.c
+bluez-5.51/android/pixit-mps.txt
+bluez-5.51/android/pics-avdtp.txt
+bluez-5.51/android/pts-sm.txt
+bluez-5.51/android/map-client.h
+bluez-5.51/android/bluetoothd_snoop.te
+bluez-5.51/android/bluetoothd-wrapper.c
+bluez-5.51/android/pts-mcap.txt
+bluez-5.51/android/hal-utils.c
+bluez-5.51/android/hal-handsfree.c
+bluez-5.51/android/ipc.h
+bluez-5.51/android/pics-avrcp.txt
+bluez-5.51/android/pixit-hid.txt
+bluez-5.51/android/hal-audio-aptx.c
+bluez-5.51/android/pixit-gatt.txt
+bluez-5.51/android/pics-scpp.txt
+bluez-5.51/android/avdtptest.c
+bluez-5.51/android/system-emulator.c
+bluez-5.51/android/pixit-scpp.txt
+bluez-5.51/android/tester-map-client.c
+bluez-5.51/android/pixit-rfcomm.txt
+bluez-5.51/android/pics-hsp.txt
+bluez-5.51/android/pixit-avctp.txt
+bluez-5.51/android/pics-gavdp.txt
+bluez-5.51/android/system/
+bluez-5.51/android/system/audio.h
+bluez-5.51/android/hal-gatt.c
+bluez-5.51/android/init.bluetooth.rc
+bluez-5.51/android/a2dp-sink.h
+bluez-5.51/android/pics-iopt.txt
+bluez-5.51/android/hal-audio.c
+bluez-5.51/android/pics-opp.txt
+bluez-5.51/android/pixit-pbap.txt
+bluez-5.51/android/hal-avrcp-ctrl.c
+bluez-5.51/android/pts-spp.txt
+bluez-5.51/android/handsfree-client.h
+bluez-5.51/android/pics-hdp.txt
+bluez-5.51/android/tester-socket.c
+bluez-5.51/android/pts-pbap.txt
+bluez-5.51/android/ipc-common.h
+bluez-5.51/android/cts.txt
+bluez-5.51/android/hal-socket.c
+bluez-5.51/android/pts-mps.txt
+bluez-5.51/android/tester-pan.c
+bluez-5.51/android/tester-main.h
+bluez-5.51/android/pts-dis.txt
+bluez-5.51/android/Android.mk
+bluez-5.51/android/ipc.c
+bluez-5.51/android/hidhost.h
+bluez-5.51/android/pixit-gavdp.txt
+bluez-5.51/android/pics-spp.txt
+bluez-5.51/android/pts-gavdp.txt
+bluez-5.51/android/pixit-sdp.txt
+bluez-5.51/android/health.c
+bluez-5.51/android/Makefile.am
+bluez-5.51/android/pts-bnep.txt
+bluez-5.51/android/cutils/
+bluez-5.51/android/cutils/properties.h
+bluez-5.51/android/pixit-iopt.txt
+bluez-5.51/android/pics-did.txt
+bluez-5.51/android/pts-scpp.txt
+bluez-5.51/android/pics-mps.txt
+bluez-5.51/android/pixit-sm.txt
+bluez-5.51/android/audio_utils/
+bluez-5.51/android/audio_utils/resampler.h
+bluez-5.51/android/audio_utils/resampler.c
+bluez-5.51/android/bluetoothd.te
+bluez-5.51/android/pixit-l2cap.txt
+bluez-5.51/android/audio-ipc-api.txt
+bluez-5.51/android/hal-audio-sbc.c
+bluez-5.51/android/pixit-avrcp.txt
+bluez-5.51/android/pixit-pan.txt
+bluez-5.51/android/pics-hid.txt
+bluez-5.51/android/hal-pan.c
+bluez-5.51/android/pics-avctp.txt
+bluez-5.51/android/pics-sm.txt
+bluez-5.51/android/tester-bluetooth.c
+bluez-5.51/android/pixit-hfp.txt
+bluez-5.51/android/pics-sdp.txt
+bluez-5.51/android/gatt.c
+bluez-5.51/android/pts-l2cap.txt
+bluez-5.51/android/avrcp-lib.h
+bluez-5.51/android/a2dp-sink.c
+bluez-5.51/android/pixit-gap.txt
+bluez-5.51/android/hal-avrcp.c
+bluez-5.51/android/main.c
+bluez-5.51/android/pts-hid.txt
+bluez-5.51/android/compat/
+bluez-5.51/android/compat/wordexp.h
+bluez-5.51/android/compat/readline/
+bluez-5.51/android/compat/readline/history.h
+bluez-5.51/android/compat/readline/readline.h
+bluez-5.51/android/avrcp.h
+bluez-5.51/android/handsfree.c
+bluez-5.51/android/pts-gatt.txt
+bluez-5.51/android/pts-avctp.txt
+bluez-5.51/android/pics-pbap.txt
+bluez-5.51/android/pixit-hdp.txt
+bluez-5.51/android/bluetoothd-snoop.c
+bluez-5.51/android/tester-gatt.c
+bluez-5.51/android/hal-a2dp.c
+bluez-5.51/android/avctp.c
+bluez-5.51/android/bluetooth.h
+bluez-5.51/android/client/
+bluez-5.51/android/client/if-main.h
+bluez-5.51/android/client/if-pan.c
+bluez-5.51/android/client/if-rc-ctrl.c
+bluez-5.51/android/client/if-sco.c
+bluez-5.51/android/client/if-mce.c
+bluez-5.51/android/client/if-hl.c
+bluez-5.51/android/client/pollhandler.h
+bluez-5.51/android/client/pollhandler.c
+bluez-5.51/android/client/history.c
+bluez-5.51/android/client/history.h
+bluez-5.51/android/client/if-av-sink.c
+bluez-5.51/android/client/if-rc.c
+bluez-5.51/android/client/haltest.c
+bluez-5.51/android/client/if-gatt.c
+bluez-5.51/android/client/terminal.h
+bluez-5.51/android/client/if-hf.c
+bluez-5.51/android/client/tabcompletion.c
+bluez-5.51/android/client/terminal.c
+bluez-5.51/android/client/if-audio.c
+bluez-5.51/android/client/if-hf-client.c
+bluez-5.51/android/client/if-hh.c
+bluez-5.51/android/client/if-sock.c
+bluez-5.51/android/client/if-av.c
+bluez-5.51/android/client/if-bt.c
+bluez-5.51/android/hal-sco.c
+bluez-5.51/android/pts-hdp.txt
+bluez-5.51/android/hal-bluetooth.c
+bluez-5.51/android/pixit-avdtp.txt
+bluez-5.51/android/hal-audio.h
+bluez-5.51/android/hal-log.h
+bluez-5.51/android/pics-l2cap.txt
+bluez-5.51/android/handsfree.h
+bluez-5.51/android/socket.h
+bluez-5.51/android/hal-msg.h
+bluez-5.51/android/pts-rfcomm.txt
+bluez-5.51/android/pixit-hsp.txt
+bluez-5.51/android/tester-hidhost.c
+bluez-5.51/android/test-ipc.c
+bluez-5.51/android/avrcp.c
+bluez-5.51/android/sco-msg.h
+bluez-5.51/android/avrcp-lib.c
+bluez-5.51/android/hal-ipc.c
+bluez-5.51/android/pixit-a2dp.txt
+bluez-5.51/android/hal-health.c
+bluez-5.51/android/pts-avrcp.txt
+bluez-5.51/android/avdtp.h
+bluez-5.51/android/utils.h
+bluez-5.51/android/pics-hogp.txt
+bluez-5.51/android/pixit-map.txt
+bluez-5.51/android/pixit-dis.txt
+bluez-5.51/android/pts-hfp.txt
+bluez-5.51/android/README
+bluez-5.51/android/handsfree-client.c
+bluez-5.51/android/map-client.c
+bluez-5.51/android/avctp.h
+bluez-5.51/android/socket.c
+bluez-5.51/android/pts-hsp.txt
+bluez-5.51/android/avdtp.c
+bluez-5.51/android/hal.h
+bluez-5.51/android/hal-utils.h
+bluez-5.51/android/hal-a2dp-sink.c
+bluez-5.51/android/pics-a2dp.txt
+bluez-5.51/android/log.c
+bluez-5.51/android/audio-msg.h
+bluez-5.51/android/pics-dis.txt
+bluez-5.51/android/sco.h
+bluez-5.51/config.guess
+bluez-5.51/ChangeLog
+bluez-5.51/gdbus/
+bluez-5.51/gdbus/polkit.c
+bluez-5.51/gdbus/gdbus.h
+bluez-5.51/gdbus/object.c
+bluez-5.51/gdbus/mainloop.c
+bluez-5.51/gdbus/watch.c
+bluez-5.51/gdbus/client.c
+bluez-5.51/Makefile.in
+bluez-5.51/plugins/
+bluez-5.51/plugins/sixaxis.c
+bluez-5.51/plugins/wiimote.c
+bluez-5.51/plugins/autopair.c
+bluez-5.51/plugins/neard.c
+bluez-5.51/plugins/hostname.c
+bluez-5.51/plugins/external-dummy.c
+bluez-5.51/plugins/policy.c
+bluez-5.51/ltmain.sh
+bluez-5.51/compile
+bluez-5.51/AUTHORS
+bluez-5.51/completion/
+bluez-5.51/completion/zsh/
+bluez-5.51/completion/zsh/_bluetoothctl
+bluez-5.51/monitor/
+bluez-5.51/monitor/sdp.h
+bluez-5.51/monitor/analyze.c
+bluez-5.51/monitor/vendor.h
+bluez-5.51/monitor/hwdb.h
+bluez-5.51/monitor/a2dp.h
+bluez-5.51/monitor/packet.c
+bluez-5.51/monitor/bt.h
+bluez-5.51/monitor/lmp.c
+bluez-5.51/monitor/bnep.h
+bluez-5.51/monitor/a2dp.c
+bluez-5.51/monitor/intel.h
+bluez-5.51/monitor/rfcomm.c
+bluez-5.51/monitor/ellisys.c
+bluez-5.51/monitor/ll.c
+bluez-5.51/monitor/broadcom.h
+bluez-5.51/monitor/lmp.h
+bluez-5.51/monitor/display.c
+bluez-5.51/monitor/hcidump.h
+bluez-5.51/monitor/ll.h
+bluez-5.51/monitor/ellisys.h
+bluez-5.51/monitor/tty.h
+bluez-5.51/monitor/control.c
+bluez-5.51/monitor/sdp.c
+bluez-5.51/monitor/keys.c
+bluez-5.51/monitor/crc.h
+bluez-5.51/monitor/keys.h
+bluez-5.51/monitor/intel.c
+bluez-5.51/monitor/broadcom.c
+bluez-5.51/monitor/packet.h
+bluez-5.51/monitor/crc.c
+bluez-5.51/monitor/main.c
+bluez-5.51/monitor/hwdb.c
+bluez-5.51/monitor/hcidump.c
+bluez-5.51/monitor/avctp.c
+bluez-5.51/monitor/analyze.h
+bluez-5.51/monitor/l2cap.h
+bluez-5.51/monitor/l2cap.c
+bluez-5.51/monitor/bnep.c
+bluez-5.51/monitor/avdtp.h
+bluez-5.51/monitor/rfcomm.h
+bluez-5.51/monitor/avctp.h
+bluez-5.51/monitor/vendor.c
+bluez-5.51/monitor/avdtp.c
+bluez-5.51/monitor/display.h
+bluez-5.51/monitor/control.h
+bluez-5.51/client/
+bluez-5.51/client/gatt.h
+bluez-5.51/client/display.c
+bluez-5.51/client/agent.c
+bluez-5.51/client/gatt.c
+bluez-5.51/client/main.c
+bluez-5.51/client/advertising.h
+bluez-5.51/client/agent.h
+bluez-5.51/client/display.h
+bluez-5.51/client/advertising.c
+bluez-5.51/gobex/
+bluez-5.51/gobex/gobex-packet.c
+bluez-5.51/gobex/gobex-apparam.h
+bluez-5.51/gobex/gobex.h
+bluez-5.51/gobex/gobex-defs.h
+bluez-5.51/gobex/gobex-header.h
+bluez-5.51/gobex/gobex-debug.h
+bluez-5.51/gobex/gobex-apparam.c
+bluez-5.51/gobex/gobex-packet.h
+bluez-5.51/gobex/gobex-header.c
+bluez-5.51/gobex/gobex-defs.c
+bluez-5.51/gobex/gobex.c
+bluez-5.51/gobex/gobex-transfer.c
+bluez-5.51/lib/
+bluez-5.51/lib/sdp.h
+bluez-5.51/lib/bluetooth.c
+bluez-5.51/lib/bnep.h
+bluez-5.51/lib/hci.c
+bluez-5.51/lib/a2mp.h
+bluez-5.51/lib/cmtp.h
+bluez-5.51/lib/sdp_lib.h
+bluez-5.51/lib/sdp.c
+bluez-5.51/lib/uuid.c
+bluez-5.51/lib/bluez.pc.in
+bluez-5.51/lib/mgmt.h
+bluez-5.51/lib/bluetooth.h
+bluez-5.51/lib/uuid.h
+bluez-5.51/lib/amp.h
+bluez-5.51/lib/hci.h
+bluez-5.51/lib/hci_lib.h
+bluez-5.51/lib/l2cap.h
+bluez-5.51/lib/rfcomm.h
+bluez-5.51/lib/hidp.h
+bluez-5.51/lib/sco.h
+bluez-5.51/tools/
+bluez-5.51/tools/hciattach.1
+bluez-5.51/tools/userchan-tester.c
+bluez-5.51/tools/sdptool.1
+bluez-5.51/tools/bccmd.1
+bluez-5.51/tools/hciattach_tialt.c
+bluez-5.51/tools/seq2bseq.c
+bluez-5.51/tools/csr_bcsp.c
+bluez-5.51/tools/test-runner.c
+bluez-5.51/tools/ciptool.c
+bluez-5.51/tools/hcitool.c
+bluez-5.51/tools/obex-server-tool.c
+bluez-5.51/tools/hid2hci.1
+bluez-5.51/tools/hid2hci.c
+bluez-5.51/tools/hcieventmask.c
+bluez-5.51/tools/mesh/
+bluez-5.51/tools/mesh/gatt.h
+bluez-5.51/tools/mesh/mesh-net.h
+bluez-5.51/tools/mesh/prov.h
+bluez-5.51/tools/mesh/net.h
+bluez-5.51/tools/mesh/util.h
+bluez-5.51/tools/mesh/onoff-model.h
+bluez-5.51/tools/mesh/local_node.json
+bluez-5.51/tools/mesh/agent.c
+bluez-5.51/tools/mesh/crypto.h
+bluez-5.51/tools/mesh/config-client.c
+bluez-5.51/tools/mesh/prov-db.h
+bluez-5.51/tools/mesh/prov_db.json
+bluez-5.51/tools/mesh/config-server.c
+bluez-5.51/tools/mesh/keys.h
+bluez-5.51/tools/mesh/gatt.c
+bluez-5.51/tools/mesh/util.c
+bluez-5.51/tools/mesh/config-model.h
+bluez-5.51/tools/mesh/onoff-model.c
+bluez-5.51/tools/mesh/crypto.c
+bluez-5.51/tools/mesh/prov-db.c
+bluez-5.51/tools/mesh/net.c
+bluez-5.51/tools/mesh/node.c
+bluez-5.51/tools/mesh/agent.h
+bluez-5.51/tools/mesh/prov.c
+bluez-5.51/tools/mesh/node.h
+bluez-5.51/tools/gap-tester.c
+bluez-5.51/tools/hciattach_qualcomm.c
+bluez-5.51/tools/mpris-proxy.c
+bluez-5.51/tools/ubcsp.c
+bluez-5.51/tools/btiotest.c
+bluez-5.51/tools/create-image.c
+bluez-5.51/tools/rfcomm.c
+bluez-5.51/tools/hex2hcd.c
+bluez-5.51/tools/bluetooth-logger.service.in
+bluez-5.51/tools/btmon-logger.c
+bluez-5.51/tools/bluetooth-player.c
+bluez-5.51/tools/ibeacon.c
+bluez-5.51/tools/rtlfw.c
+bluez-5.51/tools/avtest.c
+bluez-5.51/tools/hciattach_bcm43xx.c
+bluez-5.51/tools/amptest.c
+bluez-5.51/tools/mgmt-tester.c
+bluez-5.51/tools/smp-tester.c
+bluez-5.51/tools/csr_hci.c
+bluez-5.51/tools/obexctl.c
+bluez-5.51/tools/oobtest.c
+bluez-5.51/tools/btpclient.c
+bluez-5.51/tools/nokfw.c
+bluez-5.51/tools/rfcomm-tester.c
+bluez-5.51/tools/hciattach_ti.c
+bluez-5.51/tools/btsnoop.c
+bluez-5.51/tools/scotest.c
+bluez-5.51/tools/l2ping.1
+bluez-5.51/tools/btinfo.c
+bluez-5.51/tools/advtest.c
+bluez-5.51/tools/parser/
+bluez-5.51/tools/parser/sdp.h
+bluez-5.51/tools/parser/obex.c
+bluez-5.51/tools/parser/lmp.c
+bluez-5.51/tools/parser/bpa.c
+bluez-5.51/tools/parser/smp.c
+bluez-5.51/tools/parser/rfcomm.c
+bluez-5.51/tools/parser/hci.c
+bluez-5.51/tools/parser/cmtp.c
+bluez-5.51/tools/parser/tcpip.c
+bluez-5.51/tools/parser/hcrp.c
+bluez-5.51/tools/parser/sdp.c
+bluez-5.51/tools/parser/parser.h
+bluez-5.51/tools/parser/sap.c
+bluez-5.51/tools/parser/parser.c
+bluez-5.51/tools/parser/hidp.c
+bluez-5.51/tools/parser/ericsson.c
+bluez-5.51/tools/parser/capi.c
+bluez-5.51/tools/parser/avctp.c
+bluez-5.51/tools/parser/avrcp.c
+bluez-5.51/tools/parser/l2cap.h
+bluez-5.51/tools/parser/l2cap.c
+bluez-5.51/tools/parser/ppp.c
+bluez-5.51/tools/parser/bnep.c
+bluez-5.51/tools/parser/att.c
+bluez-5.51/tools/parser/rfcomm.h
+bluez-5.51/tools/parser/avdtp.c
+bluez-5.51/tools/parser/amp.c
+bluez-5.51/tools/parser/csr.c
+bluez-5.51/tools/btproxy.c
+bluez-5.51/tools/gatt-service.c
+bluez-5.51/tools/rfcomm.1
+bluez-5.51/tools/hciconfig.1
+bluez-5.51/tools/3dsp.c
+bluez-5.51/tools/hcisecfilter.c
+bluez-5.51/tools/l2cap-tester.c
+bluez-5.51/tools/sdptool.c
+bluez-5.51/tools/ciptool.1
+bluez-5.51/tools/hcidump.1
+bluez-5.51/tools/btmgmt.c
+bluez-5.51/tools/hci-tester.c
+bluez-5.51/tools/ubcsp.h
+bluez-5.51/tools/hciattach_st.c
+bluez-5.51/tools/eddystone.c
+bluez-5.51/tools/rctest.1
+bluez-5.51/tools/hciattach.h
+bluez-5.51/tools/avinfo.c
+bluez-5.51/tools/bcmfw.c
+bluez-5.51/tools/btattach.c
+bluez-5.51/tools/hwdb.c
+bluez-5.51/tools/hid2hci.rules
+bluez-5.51/tools/magic.btsnoop
+bluez-5.51/tools/btgatt-server.c
+bluez-5.51/tools/l2test.c
+bluez-5.51/tools/hcidump.c
+bluez-5.51/tools/hcitool.1
+bluez-5.51/tools/hciattach_intel.c
+bluez-5.51/tools/bdaddr.c
+bluez-5.51/tools/l2ping.c
+bluez-5.51/tools/csr_usb.c
+bluez-5.51/tools/bneptest.c
+bluez-5.51/tools/bdaddr.1
+bluez-5.51/tools/csr_3wire.c
+bluez-5.51/tools/btattach.1
+bluez-5.51/tools/bccmd.c
+bluez-5.51/tools/bnep-tester.c
+bluez-5.51/tools/btconfig.c
+bluez-5.51/tools/check-selftest.c
+bluez-5.51/tools/meshctl.c
+bluez-5.51/tools/hciattach_ath3k.c
+bluez-5.51/tools/hciconfig.c
+bluez-5.51/tools/btgatt-client.c
+bluez-5.51/tools/mcaptest.c
+bluez-5.51/tools/rctest.c
+bluez-5.51/tools/csr_h4.c
+bluez-5.51/tools/csr.h
+bluez-5.51/tools/obex-client-tool.c
+bluez-5.51/tools/sco-tester.c
+bluez-5.51/tools/csr.c
+bluez-5.51/tools/bluemoon.c
+bluez-5.51/tools/hciattach.c
+bluez-5.51/tools/cltest.c
+bluez-5.51/COPYING.LIB
+bluez-5.51/TODO
+bluez-5.51/unit/
+bluez-5.51/unit/test-hfp.c
+bluez-5.51/unit/test-queue.c
+bluez-5.51/unit/test-gdbus-client.c
+bluez-5.51/unit/test-crypto.c
+bluez-5.51/unit/test-uuid.c
+bluez-5.51/unit/test-uhid.c
+bluez-5.51/unit/test-gobex-packet.c
+bluez-5.51/unit/test-avrcp.c
+bluez-5.51/unit/util.h
+bluez-5.51/unit/test-gobex-header.c
+bluez-5.51/unit/test-crc.c
+bluez-5.51/unit/test-avdtp.c
+bluez-5.51/unit/test-gobex.c
+bluez-5.51/unit/test-textfile.c
+bluez-5.51/unit/test-gobex-transfer.c
+bluez-5.51/unit/test-mgmt.c
+bluez-5.51/unit/test-gobex-apparam.c
+bluez-5.51/unit/test-eir.c
+bluez-5.51/unit/test-hog.c
+bluez-5.51/unit/util.c
+bluez-5.51/unit/test-ringbuf.c
+bluez-5.51/unit/test-sdp.c
+bluez-5.51/unit/test-ecc.c
+bluez-5.51/unit/test-midi.c
+bluez-5.51/unit/test-gattrib.c
+bluez-5.51/unit/test-avctp.c
+bluez-5.51/unit/test-lib.c
+bluez-5.51/unit/test-gatt.c
+bluez-5.51/README
+bluez-5.51/test-driver
+bluez-5.51/config.sub
+bluez-5.51/test/
+bluez-5.51/test/service-did.xml
+bluez-5.51/test/test-health-sink
+bluez-5.51/test/test-health
+bluez-5.51/test/test-adapter
+bluez-5.51/test/test-device
+bluez-5.51/test/pbap-client
+bluez-5.51/test/map-client
+bluez-5.51/test/test-gatt-profile
+bluez-5.51/test/monitor-bluetooth
+bluez-5.51/test/dbusdef.py
+bluez-5.51/test/test-nap
+bluez-5.51/test/test-profile
+bluez-5.51/test/example-advertisement
+bluez-5.51/test/test-discovery
+bluez-5.51/test/example-gatt-server
+bluez-5.51/test/example-gatt-client
+bluez-5.51/test/test-manager
+bluez-5.51/test/ftp-client
+bluez-5.51/test/list-devices
+bluez-5.51/test/test-sap-server
+bluez-5.51/test/test-mesh
+bluez-5.51/test/simple-agent
+bluez-5.51/test/service-opp.xml
+bluez-5.51/test/simple-endpoint
+bluez-5.51/test/service-ftp.xml
+bluez-5.51/test/service-record.dtd
+bluez-5.51/test/service-spp.xml
+bluez-5.51/test/test-hfp
+bluez-5.51/test/agent.py
+bluez-5.51/test/test-network
+bluez-5.51/test/opp-client
+bluez-5.51/test/bluezutils.py
+bluez-5.51/test/sap_client.py
+bluez-5.51/test/simple-player
+Removing intermediate container eb419e1af62c
+ ---> 2323f9adde54
+Step 14/23 : WORKDIR /tmp/bluez/bluez-5.51
+ ---> Running in 3058173953cf
+Removing intermediate container 3058173953cf
+ ---> 82318d23b5aa
+Step 15/23 : RUN ./configure --disable-systemd
+ ---> Running in 021770cadba4
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking how to create a pax tar archive... gnutar
+checking whether make supports nested variables... (cached) yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking whether make supports the include directive... yes (GNU style)
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for C/C++ restrict keyword... __restrict
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking whether gcc accepts -fPIE... yes
+checking build system type... armv7l-unknown-linux-gnueabihf
+checking host system type... armv7l-unknown-linux-gnueabihf
+checking how to print strings... printf
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert armv7l-unknown-linux-gnueabihf file names to armv7l-unknown-linux-gnueabihf format... func_convert_file_noop
+checking how to convert armv7l-unknown-linux-gnueabihf file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking for explicit_bzero... no
+checking for signalfd... yes
+checking for clock_gettime in -lrt... yes
+checking for pthread_create in -lpthread... yes
+checking for dlopen in -ldl... yes
+checking linux/types.h usability... yes
+checking linux/types.h presence... yes
+checking for linux/types.h... yes
+checking linux/if_alg.h usability... yes
+checking linux/if_alg.h presence... yes
+checking for linux/if_alg.h... yes
+checking for GLIB... yes
+checking for DBUS... yes
+checking D-Bus configuration directory... /etc
+checking D-Bus system bus services dir... /usr/share/dbus-1/system-services
+checking D-Bus session bus services dir... /usr/share/dbus-1/services
+${prefix}/share/zsh/site-functions
+checking for UDEV... yes
+checking for udev_hwdb_new in -ludev... yes
+checking udev directory... /lib/udev
+checking for ICAL... yes
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/bluetoothd.8
+config.status: creating lib/bluez.pc
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+Removing intermediate container 021770cadba4
+ ---> 9e5aa3c56970
+Step 16/23 : RUN make
+ ---> Running in daeb6eb40fd6
+  GEN      lib/bluetooth/bluetooth.h
+  GEN      lib/bluetooth/hci.h
+  GEN      lib/bluetooth/hci_lib.h
+  GEN      lib/bluetooth/sco.h
+  GEN      lib/bluetooth/l2cap.h
+  GEN      lib/bluetooth/sdp.h
+  GEN      lib/bluetooth/sdp_lib.h
+  GEN      lib/bluetooth/rfcomm.h
+  GEN      lib/bluetooth/bnep.h
+  GEN      lib/bluetooth/cmtp.h
+  GEN      lib/bluetooth/hidp.h
+  GEN      src/builtin.h
+  GEN      obexd/src/builtin.h
+make --no-print-directory all-am
+  CC       client/main.o
+  CC       client/display.o
+  CC       client/agent.o
+  CC       client/advertising.o
+  CC       client/gatt.o
+  CC       gdbus/mainloop.lo
+  CC       gdbus/watch.lo
+  CC       gdbus/object.lo
+  CC       gdbus/client.lo
+  CC       gdbus/polkit.lo
+  CCLD     gdbus/libgdbus-internal.la
+[91mar: `u' modifier ignored since `D' is the default (see `U')
+[0m  CC       src/shared/queue.lo
+  CC       src/shared/util.lo
+  CC       src/shared/mgmt.lo
+  CC       src/shared/crypto.lo
+  CC       src/shared/ecc.lo
+  CC       src/shared/ringbuf.lo
+  CC       src/shared/tester.lo
+  CC       src/shared/hci.lo
+  CC       src/shared/hci-crypto.lo
+  CC       src/shared/hfp.lo
+  CC       src/shared/uhid.lo
+  CC       src/shared/pcap.lo
+  CC       src/shared/btsnoop.lo
+  CC       src/shared/ad.lo
+  CC       src/shared/att.lo
+  CC       src/shared/gatt-helpers.lo
+  CC       src/shared/gatt-client.lo
+  CC       src/shared/gatt-server.lo
+  CC       src/shared/gatt-db.lo
+  CC       src/shared/gap.lo
+  CC       src/shared/log.lo
+  CC       src/shared/shell.lo
+  CC       src/shared/io-glib.lo
+  CC       src/shared/timeout-glib.lo
+  CC       src/shared/mainloop-glib.lo
+  CC       src/shared/mainloop-notify.lo
+  CCLD     src/libshared-glib.la
+[91mar: `u' modifier ignored since `D' is the default (see `U')
+[0m  CCLD     client/bluetoothctl
+  CC       monitor/main.o
+  CC       monitor/display.o
+  CC       monitor/hcidump.o
+  CC       monitor/ellisys.o
+  CC       monitor/control.o
+  CC       monitor/packet.o
+  CC       monitor/vendor.o
+  CC       monitor/lmp.o
+  CC       monitor/crc.o
+  CC       monitor/ll.o
+  CC       monitor/l2cap.o
+  CC       monitor/sdp.o
+  CC       monitor/avctp.o
+  CC       monitor/avdtp.o
+  CC       monitor/a2dp.o
+  CC       monitor/rfcomm.o
+  CC       monitor/bnep.o
+  CC       monitor/hwdb.o
+  CC       monitor/keys.o
+  CC       monitor/analyze.o
+  CC       monitor/intel.o
+  CC       monitor/broadcom.o
+  CC       lib/bluetooth.lo
+  CC       lib/hci.lo
+  CC       lib/sdp.lo
+  CC       lib/uuid.lo
+  CCLD     lib/libbluetooth-internal.la
+[91mar: `u' modifier ignored since `D' is the default (see `U')
+[0m  CC       src/shared/io-mainloop.lo
+  CC       src/shared/timeout-mainloop.lo
+  CC       src/shared/mainloop.lo
+  CCLD     src/libshared-mainloop.la
+[91mar: `u' modifier ignored since `D' is the default (see `U')[0m[91m
+[0m  CCLD     monitor/btmon
+  CC       tools/rctest.o
+  CCLD     tools/rctest
+  CC       tools/l2test.o
+  CCLD     tools/l2test
+  CC       tools/l2ping.o
+  CCLD     tools/l2ping
+  CC       tools/bccmd.o
+  CC       tools/csr.o
+  CC       tools/csr_hci.o
+  CC       tools/csr_usb.o
+  CC       tools/csr_h4.o
+  CC       tools/csr_3wire.o
+  CC       tools/csr_bcsp.o
+  CC       tools/ubcsp.o
+  CCLD     tools/bccmd
+  CC       tools/bluemoon.o
+  CCLD     tools/bluemoon
+  CC       tools/hex2hcd.o
+  CCLD     tools/hex2hcd
+  CC       tools/mpris-proxy.o
+  CCLD     tools/mpris-proxy
+  CC       tools/btattach.o
+  CCLD     tools/btattach
+  CC       profiles/cups/main.o
+  CC       profiles/cups/sdp.o
+  CC       profiles/cups/spp.o
+  CC       profiles/cups/hcrp.o
+  CCLD     profiles/cups/bluetooth
+  CC       tools/bdaddr.o
+  CC       src/oui.o
+  CCLD     tools/bdaddr
+  CC       tools/avinfo.o
+  CCLD     tools/avinfo
+  CC       tools/avtest.o
+  CCLD     tools/avtest
+  CC       tools/scotest.o
+  CCLD     tools/scotest
+  CC       tools/amptest.o
+  CCLD     tools/amptest
+  CC       tools/hwdb.o
+  CCLD     tools/hwdb
+  CC       tools/hcieventmask.o
+  CCLD     tools/hcieventmask
+  CC       tools/hcisecfilter.o
+  CCLD     tools/hcisecfilter
+  CC       tools/btinfo.o
+  CCLD     tools/btinfo
+  CC       tools/btconfig.o
+  CCLD     tools/btconfig
+  CC       tools/btsnoop.o
+  CCLD     tools/btsnoop
+  CC       tools/btproxy.o
+  CCLD     tools/btproxy
+  CC       tools/btiotest.o
+  CC       btio/btio.o
+  CCLD     tools/btiotest
+  CC       tools/bneptest.o
+  CC       src/log.o
+  CC       profiles/network/bnep.o
+  CCLD     tools/bneptest
+  CC       tools/mcaptest.o
+  CC       profiles/health/mcap.o
+  CCLD     tools/mcaptest
+  CC       tools/cltest.o
+  CCLD     tools/cltest
+  CC       tools/oobtest.o
+  CCLD     tools/oobtest
+  CC       tools/advtest.o
+  CCLD     tools/advtest
+  CC       tools/seq2bseq.o
+  CCLD     tools/seq2bseq
+  CC       tools/nokfw.o
+  CCLD     tools/nokfw
+  CC       tools/rtlfw.o
+  CCLD     tools/rtlfw
+  CC       tools/bcmfw.o
+  CCLD     tools/bcmfw
+  CC       tools/create-image.o
+  CCLD     tools/create-image
+  CC       tools/eddystone.o
+  CCLD     tools/eddystone
+  CC       tools/ibeacon.o
+  CCLD     tools/ibeacon
+  CC       tools/btgatt-client.o
+  CC       src/uuid-helper.o
+  CCLD     tools/btgatt-client
+  CC       tools/btgatt-server.o
+  CCLD     tools/btgatt-server
+  CC       tools/test-runner.o
+  CCLD     tools/test-runner
+  CC       tools/check-selftest.o
+  CCLD     tools/check-selftest
+  CC       tools/gatt-service.o
+  CCLD     tools/gatt-service
+  CC       profiles/iap/main.o
+  CCLD     profiles/iap/iapd
+  CC       tools/btmgmt.o
+  CCLD     tools/btmgmt
+  CC       gobex/gobex.o
+  CC       gobex/gobex-defs.o
+  CC       gobex/gobex-packet.o
+  CC       gobex/gobex-header.o
+  CC       gobex/gobex-transfer.o
+  CC       gobex/gobex-apparam.o
+  CC       tools/obex-client-tool.o
+  CCLD     tools/obex-client-tool
+  CC       tools/obex-server-tool.o
+  CCLD     tools/obex-server-tool
+  CC       tools/bluetooth-player.o
+  CCLD     tools/bluetooth-player
+  CC       tools/obexctl.o
+  CCLD     tools/obexctl
+  CC       plugins/bluetoothd-hostname.o
+  CC       plugins/bluetoothd-wiimote.o
+  CC       plugins/bluetoothd-autopair.o
+  CC       plugins/bluetoothd-policy.o
+  CC       profiles/audio/bluetoothd-source.o
+  CC       profiles/audio/bluetoothd-sink.o
+  CC       profiles/audio/bluetoothd-a2dp.o
+  CC       profiles/audio/bluetoothd-avdtp.o
+  CC       profiles/audio/bluetoothd-media.o
+  CC       profiles/audio/bluetoothd-transport.o
+  CC       profiles/audio/bluetoothd-control.o
+  CC       profiles/audio/bluetoothd-avctp.o
+  CC       profiles/audio/bluetoothd-avrcp.o
+  CC       profiles/audio/bluetoothd-player.o
+  CC       profiles/network/bluetoothd-manager.o
+  CC       profiles/network/bluetoothd-bnep.o
+  CC       profiles/network/bluetoothd-server.o
+  CC       profiles/network/bluetoothd-connection.o
+  CC       profiles/input/bluetoothd-manager.o
+  CC       profiles/input/bluetoothd-server.o
+  CC       profiles/input/bluetoothd-device.o
+  CC       profiles/input/bluetoothd-hog.o
+  CC       profiles/input/bluetoothd-hog-lib.o
+  CC       profiles/deviceinfo/bluetoothd-dis.o
+  CC       profiles/battery/bluetoothd-bas.o
+  CC       profiles/scanparam/bluetoothd-scpp.o
+  CC       profiles/input/bluetoothd-suspend-none.o
+  CC       profiles/gap/bluetoothd-gas.o
+  CC       profiles/scanparam/bluetoothd-scan.o
+  CC       profiles/deviceinfo/bluetoothd-deviceinfo.o
+  CC       profiles/battery/bluetoothd-battery.o
+  CC       attrib/bluetoothd-att.o
+  CC       attrib/bluetoothd-gatt.o
+  CC       attrib/bluetoothd-gattrib.o
+  CC       attrib/bluetoothd-gatt-service.o
+  CC       btio/bluetoothd-btio.o
+  CC       src/bluetoothd-main.o
+  CC       src/bluetoothd-log.o
+  CC       src/bluetoothd-backtrace.o
+  CC       src/bluetoothd-rfkill.o
+  CC       src/bluetoothd-sdpd-server.o
+  CC       src/bluetoothd-sdpd-request.o
+  CC       src/bluetoothd-sdpd-service.o
+  CC       src/bluetoothd-sdpd-database.o
+  CC       src/bluetoothd-attrib-server.o
+  CC       src/bluetoothd-gatt-database.o
+  CC       src/bluetoothd-sdp-xml.o
+  CC       src/bluetoothd-sdp-client.o
+  CC       src/bluetoothd-textfile.o
+  CC       src/bluetoothd-uuid-helper.o
+  CC       src/bluetoothd-plugin.o
+  CC       src/bluetoothd-storage.o
+  CC       src/bluetoothd-advertising.o
+  CC       src/bluetoothd-agent.o
+  CC       src/bluetoothd-error.o
+  CC       src/bluetoothd-adapter.o
+  CC       src/bluetoothd-profile.o
+  CC       src/bluetoothd-service.o
+  CC       src/bluetoothd-gatt-client.o
+  CC       src/bluetoothd-device.o
+  CC       src/bluetoothd-dbus-common.o
+  CC       src/bluetoothd-eir.o
+  GEN      src/bluetooth.service
+  CCLD     src/bluetoothd
+  CC       btio/obexd-btio.o
+  CC       gobex/obexd-gobex.o
+  CC       gobex/obexd-gobex-defs.o
+  CC       gobex/obexd-gobex-packet.o
+  CC       gobex/obexd-gobex-header.o
+  CC       gobex/obexd-gobex-transfer.o
+  CC       gobex/obexd-gobex-apparam.o
+  CC       obexd/plugins/obexd-filesystem.o
+  CC       obexd/plugins/obexd-bluetooth.o
+  CC       obexd/plugins/obexd-opp.o
+  CC       obexd/plugins/obexd-ftp.o
+  CC       obexd/plugins/obexd-irmc.o
+  CC       obexd/plugins/obexd-pbap.o
+  CC       obexd/plugins/obexd-vcard.o
+  CC       obexd/plugins/obexd-phonebook-dummy.o
+  CC       obexd/plugins/obexd-mas.o
+  CC       obexd/plugins/obexd-messages-dummy.o
+  CC       obexd/client/obexd-mns.o
+  CC       obexd/src/obexd-main.o
+  CC       obexd/src/obexd-plugin.o
+  CC       obexd/src/obexd-log.o
+  CC       obexd/src/obexd-manager.o
+  CC       obexd/src/obexd-obex.o
+  CC       obexd/src/obexd-mimetype.o
+  CC       obexd/src/obexd-service.o
+  CC       obexd/src/obexd-transport.o
+  CC       obexd/src/obexd-server.o
+  CC       obexd/client/obexd-manager.o
+  CC       obexd/client/obexd-session.o
+  CC       obexd/client/obexd-bluetooth.o
+  CC       obexd/client/obexd-sync.o
+  CC       obexd/client/obexd-pbap.o
+  CC       obexd/client/obexd-ftp.o
+  CC       obexd/client/obexd-opp.o
+  CC       obexd/client/obexd-map.o
+  CC       obexd/client/obexd-map-event.o
+  CC       obexd/client/obexd-transfer.o
+  CC       obexd/client/obexd-transport.o
+  CC       obexd/client/obexd-driver.o
+  CCLD     obexd/src/obexd
+  CC       tools/hid2hci.o
+  CCLD     tools/hid2hci
+  GEN      tools/97-hid2hci.rules
+Removing intermediate container daeb6eb40fd6
+ ---> 873969644abf
+Step 17/23 : RUN make install
+ ---> Running in 01988086dc4a
+make --no-print-directory install-am
+ /bin/mkdir -p '/usr/local/bin'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c client/bluetoothctl monitor/btmon tools/rctest tools/l2test tools/l2ping tools/bccmd tools/bluemoon tools/hex2hcd tools/mpris-proxy tools/btattach '/usr/local/bin'
+libtool: install: /usr/bin/install -c client/bluetoothctl /usr/local/bin/bluetoothctl
+libtool: install: /usr/bin/install -c monitor/btmon /usr/local/bin/btmon
+libtool: install: /usr/bin/install -c tools/rctest /usr/local/bin/rctest
+libtool: install: /usr/bin/install -c tools/l2test /usr/local/bin/l2test
+libtool: install: /usr/bin/install -c tools/l2ping /usr/local/bin/l2ping
+libtool: install: /usr/bin/install -c tools/bccmd /usr/local/bin/bccmd
+libtool: install: /usr/bin/install -c tools/bluemoon /usr/local/bin/bluemoon
+libtool: install: /usr/bin/install -c tools/hex2hcd /usr/local/bin/hex2hcd
+libtool: install: /usr/bin/install -c tools/mpris-proxy /usr/local/bin/mpris-proxy
+libtool: install: /usr/bin/install -c tools/btattach /usr/local/bin/btattach
+ /bin/mkdir -p '/usr/local/libexec/bluetooth'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c src/bluetoothd obexd/src/obexd '/usr/local/libexec/bluetooth'
+libtool: install: /usr/bin/install -c src/bluetoothd /usr/local/libexec/bluetooth/bluetoothd
+libtool: install: /usr/bin/install -c obexd/src/obexd /usr/local/libexec/bluetooth/obexd
+ /bin/mkdir -p '/usr/local/lib/cups/backend'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c profiles/cups/bluetooth '/usr/local/lib/cups/backend'
+libtool: install: /usr/bin/install -c profiles/cups/bluetooth /usr/local/lib/cups/backend/bluetooth
+ /bin/mkdir -p '/etc/dbus-1/system.d'
+ /usr/bin/install -c -m 644 src/bluetooth.conf '/etc/dbus-1/system.d'
+ /bin/mkdir -p '/usr/local/share/zsh/site-functions'
+ /usr/bin/install -c -m 644 completion/zsh/_bluetoothctl '/usr/local/share/zsh/site-functions'
+ /bin/mkdir -p '/usr/local/share/man/man1'
+ /usr/bin/install -c -m 644 tools/rctest.1 tools/l2ping.1 tools/bccmd.1 tools/btattach.1 tools/hid2hci.1 '/usr/local/share/man/man1'
+ /bin/mkdir -p '/usr/local/share/man/man8'
+ /usr/bin/install -c -m 644 src/bluetoothd.8 '/usr/local/share/man/man8'
+ /bin/mkdir -p '/lib/udev/rules.d'
+ /usr/bin/install -c -m 644 tools/97-hid2hci.rules '/lib/udev/rules.d'
+ /bin/mkdir -p '/lib/udev'
+  /bin/bash ./libtool   --mode=install /usr/bin/install -c tools/hid2hci '/lib/udev'
+libtool: install: /usr/bin/install -c tools/hid2hci /lib/udev/hid2hci
+Removing intermediate container 01988086dc4a
+ ---> e1c259961abd
+Step 18/23 : COPY gatttool.py /usr/local/lib/python2.7/dist-packages/pygatt/backends/gatttool/gatttool.py
+ ---> a89361cd824c
+Step 19/23 : COPY . /opt/nuki
+ ---> bd4a0cd372b8
+Step 20/23 : RUN pip install flask
+ ---> Running in faadd5213138
+Collecting flask
+  Downloading Flask-1.1.1-py2.py3-none-any.whl (94 kB)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.0-py2.py3-none-any.whl (298 kB)
+Collecting click>=5.1
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2>=2.10.1
+  Downloading Jinja2-2.11.1-py2.py3-none-any.whl (126 kB)
+Collecting MarkupSafe>=0.23
+  Downloading MarkupSafe-1.1.1.tar.gz (19 kB)
+Building wheels for collected packages: MarkupSafe
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status 'done'
+  Created wheel for MarkupSafe: filename=MarkupSafe-1.1.1-cp37-cp37m-linux_armv7l.whl size=31843 sha256=6570226c191ae595d04d6cb4f57873e37f4348ea0d2b6c6e43e7422d52fbf459
+  Stored in directory: /root/.cache/pip/wheels/b9/d9/ae/63bf9056b0a22b13ade9f6b9e08187c1bb71c47ef21a8c9924
+Successfully built MarkupSafe
+Installing collected packages: Werkzeug, click, itsdangerous, MarkupSafe, Jinja2, flask
+Successfully installed Jinja2-2.11.1 MarkupSafe-1.1.1 Werkzeug-1.0.0 click-7.0 flask-1.1.1 itsdangerous-1.1.0
+Removing intermediate container faadd5213138
+ ---> 35698b3cae67
+Step 21/23 : ENV FLASK_APP server.py
+ ---> Running in 8f9b433413f9
+Removing intermediate container 8f9b433413f9
+ ---> d96634fe3b23
+Step 22/23 : WORKDIR /opt/nuki
+ ---> Running in 7cd958b77614
+Removing intermediate container 7cd958b77614
+ ---> 6e79e7f1001d
+Step 23/23 : CMD ["flask", "run", "-h", "0.0.0.0"]
+ ---> Running in 5fc7bab99bd4
+Removing intermediate container 5fc7bab99bd4
+ ---> b316a1cb9c3c
+Successfully built b316a1cb9c3c
+Successfully tagged giejay/nuki-bridge:latest
+Sending build context to Docker daemon  270.8kB
+Step 1/23 : FROM python:3.7.6-stretch
+ ---> 9a314acb75fc
+Step 2/23 : MAINTAINER Gert-Jan Compagner
+ ---> Using cache
+ ---> 3a7bf188d680
+Step 3/23 : RUN apt-get update && apt-get install -y     vim     gcc     build-essential     libglib2.0-dev     bluez     libbluetooth-dev     libffi-dev libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev     libboost-python-dev     git     --no-install-recommends &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a31135c33aed
+Step 4/23 : RUN pip3 install pygatt
+ ---> Using cache
+ ---> facc6f25d178
+Step 5/23 : RUN pip3 install pynacl
+ ---> Using cache
+ ---> 14cc3439285d
+Step 6/23 : RUN pip3 install crc16
+ ---> Using cache
+ ---> f0bde12d2707
+Step 7/23 : RUN pip3 install pybluez
+ ---> Using cache
+ ---> 07464dbb2ffb
+Step 8/23 : RUN pip3 install pexpect
+ ---> Using cache
+ ---> 5ba97648c929
+Step 9/23 : RUN apt-get update && apt-get install -y wget
+ ---> Using cache
+ ---> b953105e4446
+Step 10/23 : RUN mkdir /tmp/bluez
+ ---> Using cache
+ ---> c1d6ef69075a
+Step 11/23 : RUN wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.51.tar.xz -O /tmp/bluez/bluez-5.51.tar.xz
+ ---> Using cache
+ ---> 671b5b4dfd3e
+Step 12/23 : WORKDIR /tmp/bluez
+ ---> Using cache
+ ---> 273719d05691
+Step 13/23 : RUN tar xvf bluez-5.51.tar.xz
+ ---> Using cache
+ ---> 2323f9adde54
+Step 14/23 : WORKDIR /tmp/bluez/bluez-5.51
+ ---> Using cache
+ ---> 82318d23b5aa
+Step 15/23 : RUN ./configure --disable-systemd
+ ---> Using cache
+ ---> 9e5aa3c56970
+Step 16/23 : RUN make
+ ---> Using cache
+ ---> 873969644abf
+Step 17/23 : RUN make install
+ ---> Using cache
+ ---> e1c259961abd
+Step 18/23 : COPY gatttool.py /usr/local/lib/python2.7/dist-packages/pygatt/backends/gatttool/gatttool.py
+ ---> Using cache
+ ---> a89361cd824c
+Step 19/23 : COPY . /opt/nuki
+ ---> 620d9757b5ce
+Step 20/23 : RUN pip install flask
+ ---> Running in 05bcdaf5318c
+Collecting flask
+  Downloading Flask-1.1.1-py2.py3-none-any.whl (94 kB)
+Collecting click>=5.1
+  Downloading Click-7.0-py2.py3-none-any.whl (81 kB)
+Collecting Jinja2>=2.10.1
+  Downloading Jinja2-2.11.1-py2.py3-none-any.whl (126 kB)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.0-py2.py3-none-any.whl (298 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting MarkupSafe>=0.23
+  Downloading MarkupSafe-1.1.1.tar.gz (19 kB)
+Building wheels for collected packages: MarkupSafe
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status 'done'
+  Created wheel for MarkupSafe: filename=MarkupSafe-1.1.1-cp37-cp37m-linux_armv7l.whl size=31838 sha256=0947e69c450b84e803b8baf4d202102b86db7157a3a8e917bd6a4e296841315b
+  Stored in directory: /root/.cache/pip/wheels/b9/d9/ae/63bf9056b0a22b13ade9f6b9e08187c1bb71c47ef21a8c9924
+Successfully built MarkupSafe
+Installing collected packages: click, MarkupSafe, Jinja2, Werkzeug, itsdangerous, flask
+Successfully installed Jinja2-2.11.1 MarkupSafe-1.1.1 Werkzeug-1.0.0 click-7.0 flask-1.1.1 itsdangerous-1.1.0
+Removing intermediate container 05bcdaf5318c
+ ---> dbafc3d8a5e4
+Step 21/23 : ENV FLASK_APP server.py
+ ---> Running in 3755b2cd6bca
+Removing intermediate container 3755b2cd6bca
+ ---> f01543706410
+Step 22/23 : WORKDIR /opt/nuki
+ ---> Running in 3d1e0164eec6
+Removing intermediate container 3d1e0164eec6
+ ---> 7901d80500d8
+Step 23/23 : CMD ["flask", "run", "-h", "0.0.0.0"]
+ ---> Running in 4da4870594aa
+Removing intermediate container 4da4870594aa
+ ---> c0d65a6d8526
+Successfully built c0d65a6d8526
+Successfully tagged giejay/nuki-bridge:latest
