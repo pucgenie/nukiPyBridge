@@ -29,10 +29,7 @@ class Nuki_EncryptedCommand(object):
 		encrypted = box.encrypt(bytes(bytearray.fromhex(unencrypted)), bytes(bytearray.fromhex(self.nonce))).hex()[48:]
 		length = self.byteSwapper.swap("%04X" % int((len(encrypted)/2)))
 		msg = self.nonce + self.authID + length + encrypted
-		if format == 'BYTE_ARRAY':
-			return bytearray.fromhex(msg)
-		else:
-			return msg
+		return bytearray.fromhex(msg) if format == 'BYTE_ARRAY' else msg
 
 class Nuki_Command(object):
 	def __init__(self, payload=""):
@@ -62,7 +59,7 @@ class Nuki_REQ(Nuki_Command):
 	
 	def show(self):
 		payloadParsed = self.parser.getNukiCommandText(self.byteSwapper.swap(self.payload))
-		return "Nuki_REQ\n\tPayload: %s" % payloadParsed
+		return f"{Nuki_REQ.__name__}\n\tPayload: {payloadParsed}"
 		
 class Nuki_ERROR(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -76,7 +73,7 @@ class Nuki_ERROR(Nuki_Command):
 	
 	def show(self):
 		payloadParsed = self.parser.getNukiCommandText(self.byteSwapper.swap(self.payload))
-		return "Nuki_ERROR\n\tError Code: %s\n\tCommand Identifier: %s" % (self.errorCode,self.commandIdentifier)
+		return f"{Nuki_ERROR.__name__}\n\tError Code: {self.errorCode}\n\tCommand Identifier: {self.commandIdentifier}"
 		
 class Nuki_PUBLIC_KEY(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -87,7 +84,7 @@ class Nuki_PUBLIC_KEY(Nuki_Command):
 			self.publicKey = payload
 			
 	def show(self):
-		return "Nuki_PUBLIC_KEY\n\tKey: %s" % (self.publicKey)
+		return f"{Nuki_PUBLIC_KEY.__name__}\n\tKey: {self.publicKey}"
 
 class Nuki_CHALLENGE(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -98,7 +95,7 @@ class Nuki_CHALLENGE(Nuki_Command):
 			self.nonce = payload
 			
 	def show(self):
-		return "Nuki_CHALLENGE\n\tNonce: %s" % (self.nonce)
+		return f"{Nuki_CHALLENGE.__name__}\n\tNonce: {self.nonce}"
 
 class Nuki_AUTH_AUTHENTICATOR(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -115,7 +112,7 @@ class Nuki_AUTH_AUTHENTICATOR(Nuki_Command):
 		self.payload = self.authenticator
 		
 	def show(self):
-		return "Nuki_AUTH_AUTHENTICATOR\n\tAuthenticator: %s" % (self.authenticator)
+		return f"{Nuki_AUTH_AUTHENTICATOR.__name__}\n\tAuthenticator: {self.authenticator}"
 
 class Nuki_AUTH_DATA(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -144,7 +141,7 @@ class Nuki_AUTH_DATA(Nuki_Command):
 		self.payload = self.authenticator + self.idType + self.appID + self.name + self.nonce
 		
 	def show(self):
-		return "Nuki_AUTH_DATA\n\tAuthenticator: %s\n\tID Type: %s\n\tAuthenticator ID: %s\n\tName: %s\n\tNonce: %s" % (self.authenticator, self.idType, self.appID, bytes.fromhex(self.name).decode('ascii'), self.nonce)
+		return f"{Nuki_AUTH_DATA.__name__}\n\tAuthenticator: {self.authenticator}\n\tID Type: {self.idType}\n\tAuthenticator ID: {self.appID}\n\tName: {bytes.fromhex(self.name).decode('ascii')}\n\tNonce: {self.nonce}"
 
 class Nuki_AUTH_ID(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -161,7 +158,7 @@ class Nuki_AUTH_ID(Nuki_Command):
 			self.nonce = payload[104:]
 	
 	def show(self):
-		return "Nuki_AUTH_ID\n\tAuthenticator: %s\n\tAuthorization ID: %s\n\tUUID: %s\n\tNonce: %s" % (self.authenticator, self.authID, self.uuid, self.nonce)
+		return f"{Nuki_AUTH_ID.__name__}\n\tAuthenticator: {self.authenticator}\n\tAuthorization ID: {self.authID}\n\tUUID: {self.uuid}\n\tNonce: {self.nonce}"
 
 class Nuki_AUTH_ID_CONFIRM(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -173,7 +170,7 @@ class Nuki_AUTH_ID_CONFIRM(Nuki_Command):
 			self.authID = payload[64:]
 			
 	def show(self):
-		return "Nuki_AUTH_ID_CONFIRM\n\tAuthenticator: %s\n\tAuthorization ID: %s" % (self.authenticator, self.authID)
+		return f"{Nuki_AUTH_ID_CONFIRM.__name__}\n\tAuthenticator: {self.authenticator}\n\tAuthorization ID: {self.authID}"
 		
 	def createPayload(self, publicKeyNuki, privateKeyAuth, publicKeyAuth, nonceNuki, authID):
 		self.authID = ("%x" % authID).rjust(8,'0')
@@ -191,7 +188,7 @@ class Nuki_STATUS(Nuki_Command):
 			self.status = payload
 			
 	def show(self):
-		return "Nuki_STATUS\n\tStatus: %s" % (self.status)
+		return f"{Nuki_STATUS.__name__}\n\tStatus: {self.status}"
 		
 class Nuki_STATES(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -255,7 +252,7 @@ class Nuki_STATES(Nuki_Command):
 				self.criticalBattery = 'Critical'
 			
 	def show(self):
-		return "Nuki_STATES\n\tNuki Status: %s\n\tLock Status: %s\n\tTrigger: %s\n\tCurrent Time: %s\n\tTime Offset: %s\n\tCritical Battery: %s" % (self.nukiState,self.lockState,self.trigger,self.currentTime,self.timeOffset,self.criticalBattery)
+		return f"{Nuki_STATES.__name__}\n\tNuki Status: {self.nukiState}\n\tLock Status: {self.lockState}\n\tTrigger: {self.trigger}\n\tCurrent Time: {self.currentTime}\n\tTime Offset: {self.timeOffset}\n\tCritical Battery: {self.criticalBattery}"
 
 class Nuki_LOCK_ACTION(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -270,7 +267,7 @@ class Nuki_LOCK_ACTION(Nuki_Command):
 			self.authID = payload[64:]
 			
 	def show(self):
-		return "Nuki_LOCK_ACTION\n\tLock Action: %s\n\tAPP ID: %s\n\tFlags: %s\n\tNonce: %s" % (self.lockAction,self.appID,self.flags,self.nonce)
+		return f"{Nuki_LOCK_ACTION.__name__}\n\tLock Action: {self.lockAction}\n\tAPP ID: {self.appID}\n\tFlags: {self.flags}\n\tNonce: {self.nonce}"
 		
 	def createPayload(self, appID, lockAction, nonce):
 		self.appID = ("%x" % appID).rjust(8,'0')
@@ -312,7 +309,7 @@ class Nuki_LOG_ENTRIES_REQUEST(Nuki_Command):
 			self.pin = payload[74:]
 			
 	def show(self):
-		return "Nuki_LOCK_ENTRIES_REQUEST\n\tMost Recent: %s\n\tStart Index: %s\n\tCount: %s\n\tNonce: %s\n\tPIN: %s" % (self.mostRecent,self.startIndex,self.count,self.nonce,self.pin)
+		return f"{Nuki_LOCK_ENTRIES_REQUEST.__name__}\n\tMost Recent: {self.mostRecent}\n\tStart Index: {self.startIndex}\n\tCount: {self.count}\n\tNonce: {self.nonce}\n\tPIN: {self.pin}"
 		
 	def createPayload(self, count, nonce, pin):
 		self.mostRecent = '01'		
@@ -338,7 +335,7 @@ class Nuki_LOG_ENTRY_COUNT(Nuki_Command):
 			self.logCount = self.byteSwapper.swap(payload[2:6])
 			
 	def show(self):
-		return "Nuki_LOG_ENTRY_COUNT\n\tLOG: %s\n\tCount: %d" % (self.logEnabled, int(self.logCount, 16))
+		return f"{Nuki_LOG_ENTRY_COUNT.__name__}\n\tLOG: {self.logEnabled}\n\tCount: {int(self.logCount, 16)}"
 		
 class Nuki_LOG_ENTRY(Nuki_Command):
 	def __init__(self, payload="N/A"):
@@ -358,6 +355,7 @@ class Nuki_LOG_ENTRY(Nuki_Command):
 			hour = int(payload[12:14],16)
 			minute = int(payload[14:16],16)
 			second = int(payload[16:18],16)
+			# TODO: Use specialized formatter?
 			self.timestamp = "%02d-%02d-%d %02d:%02d:%02d" % (day,month,year,hour,minute,second)
 			self.name = payload[18:82]
 			self.type = payload[82:84]
@@ -389,42 +387,43 @@ class Nuki_LOG_ENTRY(Nuki_Command):
 					self.data = 'FOB_ACTION_3'
 				trigger = payload[86:88]
 				if trigger == '00':
-					self.data = "%s - via Bluetooth" % self.data
+					self.data = f"{self.data} - via Bluetooth"
 				elif trigger == '01':
-					self.data = "%s - manual" % self.data
+					self.data = f"{self.data} - manual"
 					self.name = "N/A".hex()
 				elif trigger == '02':
-					self.data = "%s - via button" % self.data
+					self.data = f"{self.data} - via button"
 					self.name = "N/A".hex()
 			
 	def show(self):
-		return "Nuki_LOG_ENTRY\n\tIndex: %d\n\tTimestamp: %s\n\tName: %s\n\tType: %s\n\tData: %s" % (self.index, self.timestamp, bytes.fromhex(self.name).decode('ascii'), self.type, self.data)
+		return f"{Nuki_LOG_ENTRY.__name__}\n\tIndex: {self.index}\n\tTimestamp: {self.timestamp}\n\tName: {bytes.fromhex(self.name).decode('ascii')}\n\tType: {self.type}\n\tData: {self.data}"
 		
 class NukiCommandParser:
+	NukiCommandText={
+			'0001': Nuki_REQ,
+			'0003': Nuki_PUBLIC_KEY,
+			'0004': Nuki_CHALLENGE,
+			'0005': Nuki_AUTH_AUTHENTICATOR,
+			'0006': Nuki_AUTH_DATA,
+			'0007': Nuki_AUTH_ID,
+			'000C': Nuki_STATES,
+			'001E': Nuki_AUTH_ID_CONFIRM,
+			'000E': Nuki_STATUS,
+			'0023': Nuki_LOG_ENTRIES_REQUEST,
+			'0024': Nuki_LOG_ENTRY,
+			'0026': Nuki_LOG_ENTRY_COUNT,
+			'0012': Nuki_ERROR,
+	}
 	def __init__(self):
 		self.byteSwapper = ByteSwapper()
-		self.commandList = ['0001','0003','0004','0005','0006','0007','000C','001E','000E','0023','0024','0026','0012']
+		self.commandList = [key for key in NukiCommandText]
 
 	def isNukiCommand(self, commandString):
 		command = self.byteSwapper.swap(commandString[:4])
 		return command.upper() in self.commandList
 	
 	def getNukiCommandText(self, command):
-		return {
-			'0001': 'Nuki_REQ',
-			'0003': 'Nuki_PUBLIC_KEY',
-			'0004': 'Nuki_CHALLENGE',
-			'0005': 'Nuki_AUTH_AUTHENTICATOR',
-			'0006': 'Nuki_AUTH_DATA',
-			'0007': 'Nuki_AUTH_ID',
-			'000C': 'Nuki_STATES',
-			'001E': 'Nuki_AUTH_ID_CONFIRM',
-			'000E': 'Nuki_STATUS',
-			'0023': 'Nuki_LOCK_ENTRIES_REQUEST',
-			'0024': 'Nuki_LOG_ENTRY',
-			'0026': 'Nuki_LOG_ENTRY_COUNT',
-			'0012': 'Nuki_ERROR',
-		}.get(command.upper(), 'UNKNOWN')    # UNKNOWN is default if command not found
+		return NukiCommandText.get(command.upper(), 'UNKNOWN').__name__    # UNKNOWN is default if command not found
 	
 	def parse(self, commandString):
 		if self.isNukiCommand(commandString):
@@ -432,34 +431,11 @@ class NukiCommandParser:
 			payload = commandString[4:-4]
 			crc = self.byteSwapper.swap(commandString[-4:])
 			print(f"command = {command}, payload = {payload}, crc = {crc}")
-			if command == '0001':
-				return Nuki_REQ(payload)
-			elif command == '0003':
-				return Nuki_PUBLIC_KEY(payload)
-			elif command == '0004':
-				return Nuki_CHALLENGE(payload)
-			elif command == '0005':
-				return Nuki_AUTH_AUTHENTICATOR(payload)
-			elif command == '0006':
-				return Nuki_AUTH_DATA(payload)
-			elif command == '0007':
-				return Nuki_AUTH_ID(payload)
-			elif command == '000C':
-				return Nuki_STATES(payload)
-			elif command == '001E':
-				return Nuki_AUTH_ID_CONFIRM(payload)
-			elif command == '000E':
-				return Nuki_STATUS(payload)
-			elif command == '0023':
-				return Nuki_LOG_ENTRIES_REQUEST(payload)
-			elif command == '0024':
-				return Nuki_LOG_ENTRY(payload)
-			elif command == '0026':
-				return Nuki_LOG_ENTRY_COUNT(payload)
-			elif command == '0012':
-				return Nuki_ERROR(payload)
+			commandClass = NukiCommandText[command]
+			if commandClass:
+				return commandClass(payload)
 		else:
-			return "%s does not seem to be a valid Nuki command" % commandString
+			return f"{commandString} does not seem to be a valid Nuki command"
 	
 	def splitEncryptedMessages(self, msg):
 		msgList = []
