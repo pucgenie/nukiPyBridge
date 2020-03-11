@@ -136,17 +136,12 @@ def parse_events(sock, loop_count=100):
         pkt = sock.recv(255)
         ptype, event, plen = struct.unpack("BBB", pkt[:3])
         # print "--------------"
-        if event == bluez.EVT_INQUIRY_RESULT_WITH_RSSI:
-            i = 0
-        elif event == bluez.EVT_NUM_COMP_PKTS:
-            i = 0
-        elif event == bluez.EVT_DISCONN_COMPLETE:
+        if event in [bluez.EVT_INQUIRY_RESULT_WITH_RSSI, bluez.EVT_NUM_COMP_PKTS, bluez.EVT_DISCONN_COMPLETE]:
             i = 0
         elif event == LE_META_EVENT:
             subevent, = struct.unpack("B", pkt[3])
-            pkt = pkt[4:]
             if subevent == EVT_LE_CONN_COMPLETE:
-                le_handle_connection_complete(pkt)
+                le_handle_connection_complete(pkt[4:])
     done = True
     sock.setsockopt( bluez.SOL_HCI, bluez.HCI_FILTER, old_filter )
     return myFullList
